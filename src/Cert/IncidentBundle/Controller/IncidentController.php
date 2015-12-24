@@ -2,217 +2,237 @@
 
 namespace Cert\IncidentBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
+
 use Cert\IncidentBundle\Entity\Incident;
 use Cert\IncidentBundle\Form\IncidentType;
-use Cert\IncidentBundle\Entity\Visiteur;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
-* cette classe va gerer le controlleur de notre site pour la partie gestion des incidents
-*/
+ * Incident controller.
+ *
+ */
 class IncidentController extends Controller
 {
-	
-	public function indexAction()
-	{
-		
-		# on recupere l'EntiteManager
-		$em = $this->getDoctrine()->getManager();
 
-		// on recupere la liste des alertes enregistres dans la base de donnees
-		$liste_alertes = $em->getRepository('CertIncidentBundle:Alerte')->findAll();
-
-		// on recupere la liste des vulnerabilites enregistres
-		$liste_vulnerabilite = $em->getRepository('CertIncidentBundle:Vulnerabilite')->findAll();
-
-		//recuperation de la liste des annonces de la BD
-		$liste_annonces = $em->getRepository('CertIncidentBundle:Annonce')->findAll();
-
-
-		// retourner la liste a la page index.html.twig qui doit les afficher
-		return $this->render('CertIncidentBundle:Incident:index.html.twig',array(
-			'liste_vulnerabilite' => $liste_vulnerabilite,
-			'liste_alertes' => $liste_alertes,
-			'liste_annonces' => $liste_annonces));
-
-		//retourner la liste a la page de listing des alertes
-		return $this->render('CertIncidentBundle:Incident:listeAlerte.html.twig', array('liste_alertes' => $liste_alertes));
-	}
-
-	public function aproposAction()
-	{
-		# code...
-		return $this->render('CertIncidentBundle:Incident:apropos.html.twig');
-	}
-
-	public function declarerAction()
-	{
-
-		//creation de l'objet Incident
-		$incident = new Incident();
-		$incident->setDateDeclaration( new \Datetime() );
-
-		//creation du formulaire
-		$form = $this->createForm( new IncidentType, $incident );
-
-		//recuperation du requete
-		$request = $this->get('request');
-		if ( $request->getMethod() == 'POST' ) 
-		{
-			$form->bind( $request );
-			if ( $form->isValid() ) 
-			{
-				$em = $this->getDoctrine()->getManager();
-
-				//enregistrement en BDD, on peut aussi l'envoyer par email, ou autre chose
-				$em->persist($incident);
-				$em->persist($incident->getVisiteur());
-				$em->flush();
-
-				//par de redirection apres envoie formulaire
-				return $this->redirect( $this->generateUrl('cert_incident_accueil'));
-			}
-		}
-
-		return $this->render('CertIncidentBundle:Incident:declarer.html.twig', array('form' =>$form->createView()));
-	}
-
-
-	public function listerIncidentAction()
-	{
-		# on recupere l'EntiteManager
-		$em = $this->getDoctrine()->getManager();
-
-		// on recupere la liste des incidents enregistres
-		$liste_incident = $em->getRepository('CertIncidentBundle:Incident')->findAll();
-
-		// retournee la liste a la page qui doit les afficher
-		return $this->render('CertIncidentBundle:Incident:listerIncident.html.twig', array('liste_incident' => $liste_incident));
-	}
-
-	
-	public function listerVulnerabiliteAction()
-	{
-		// on teste que l'Visiteur dispose bien du role ROLE_EXPERTINFO
-		if (! $this->get('security.context')->isGranted('ROLE_EXPERTINFO') )
-		{
-			// on declenche une exception "Access Interdit"
-			throw new AccessDeniedHttpException("Access limitee aux experts informaticiens !!!");
-			
-		}
-		# on recupere l'EntiteManager
-		$lesVulnerabilite = $this->getDoctrine()
-								->getManager()
-								->getRepository('CertIncidentBundle:Vulnerabilite')
-								->findBy(array(),array('id'=>'DESC'))
-		;
-		
-		$pagine = $this->get('knp_paginator');
-		$pagination = $pagine->paginate($lesVulnerabilite, $this->get('request')->query->get('page',1),4);
-		
-		return $this->render('CertIncidentBundle:Incident:vulnerabilite.html.twig', array('pagination' => $pagination));
-	}
-
-	public function listeAlerteAction()
-	{
-		
-		$alerte = $this->getDoctrine()
-							->getManager()
-							->getRepository('CertIncidentBundle:Alerte')
-							->findBy(array(),array('id'=> 'DESC'))
-		;
-
-		$paginator = $this->get('knp_paginator');
-		$pagination = $paginator->paginate($alerte, $this->get('request')->query->get('page',1),4);
-		
-		return $this->render('CertIncidentBundle:Incident:listeAlerte.html.twig', array('pagination' => $pagination));
-	}
-
-	public function listeAnnonceAction()
-	{
-		
-		# on recupere l'EntiteManager
-		$repository = $this->getDoctrine()->getManager()->getRepository('CertIncidentBundle:Annonce');
-
-		// on recupere la liste des vulnerabilites enregistres
-		$annonces = $repository->findAll();
-
-		// retournee la liste a la page qui doit les afficher
-		return $this->render('CertIncidentBundle:Incident:listeAnnonce.html.twig', array('annonces' => $annonces));
-	}
-
-
-	public function listeArticlesAction()
-	{
-		# on recupere l'EntiteManager
-		$em = $this->getDoctrine()->getManager();
-
-		// on recupere la liste des articles enregistres dans la base de donnees
-		$liste_articles = $em->getRepository('CertIncidentBundle:Articles')->findAll();
-
-		// retournee la liste a la page qui doit les afficher
-		return $this->render('CertIncidentBundle:Incident:articles.html.twig', array('liste_articles' => $liste_articles));
-	}
-
-	/**
-     * Finds and displays a Alerte entity.
+    /**
+     * Lists all Incident entities.
      *
      */
-    public function voirAlerteAction($id)
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('CertIncidentBundle:Alerte')->find($id);
+        $entities = $em->getRepository('CertIncidentBundle:Incident')->findAll();
 
-        if (!$entity) {
-            throw $this->createNotFoundException('alerte inexistante.');
+        $entityForms = array();
+        foreach ($entities as $incident) {
+            $editForm = $this->createEditForm($incident);
+            $result = array(
+                "id"=>$incident->getId(),
+                "form"=> $editForm->createView(),
+                "incident"=> $incident
+            );
+            $entityForms[] = $result;
         }
 
-        return $this->render('CertIncidentBundle:Incident:voirAlerte.html.twig', array(
-            'entity'      => $entity,
+        return $this->render('CertIncidentBundle:Incident:index.html.twig', array(
+            'entities' => $entityForms,
+        ));
+    }
+    /**
+     * Creates a new Incident entity.
+     *
+     */
+    public function createAction(Request $request)
+    {
+        $entity = new Incident();
+        $form = $this->createCreateForm($entity);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('expert_incident_show', array('id' => $entity->getId())));
+        }
+
+        return $this->render('CertIncidentBundle:Incident:new.html.twig', array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a Vulnerabilite entity.
+     * Creates a form to create a Incident entity.
+     *
+     * @param Incident $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createCreateForm(Incident $entity)
+    {
+        $form = $this->createForm(new IncidentType(), $entity, array(
+            'action' => $this->generateUrl('expert_incident_create'),
+            'method' => 'POST',
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Create'));
+
+        return $form;
+    }
+
+    /**
+     * Displays a form to create a new Incident entity.
      *
      */
-    public function voirVulnerabiliteAction($id)
+    public function newAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $entity = new Incident();
+        $form   = $this->createCreateForm($entity);
 
-        $entity = $em->getRepository('CertIncidentBundle:Vulnerabilite')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('vulnerabilite inexistante.');
-        }
-
-        return $this->render('CertIncidentBundle:Incident:voirVulnerabilite.html.twig', array(
-            'entity'      => $entity,
+        return $this->render('CertIncidentBundle:Incident:new.html.twig', array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
         ));
     }
 
-     /**
-     * Finds and displays a Annonce entity.
+    /**
+     * Finds and displays a Incident entity.
      *
      */
-    public function annonceAction($id)
+    public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('CertIncidentBundle:Annonce')->find($id);
+        $entity = $em->getRepository('CertIncidentBundle:Incident')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Annonce entity.');
+            throw $this->createNotFoundException('Unable to find Incident entity.');
         }
 
-        return $this->render('CertIncidentBundle:Incident:annonce.html.twig', array(
+        $deleteForm = $this->createDeleteForm($id);
+
+        return $this->render('CertIncidentBundle:Incident:show.html.twig', array(
             'entity'      => $entity,
+            'delete_form' => $deleteForm->createView(),
         ));
     }
 
+    /**
+     * Displays a form to edit an existing Incident entity.
+     *
+     */
+    public function editAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('CertIncidentBundle:Incident')->find($id);
 
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Incident entity.');
+        }
+
+        $editForm = $this->createEditForm($entity);
+        $deleteForm = $this->createDeleteForm($id);
+
+        return $this->render('CertIncidentBundle:Incident:edit.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+    * Creates a form to edit a Incident entity.
+    *
+    * @param Incident $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createEditForm(Incident $entity)
+    {
+        $form = $this->createForm(new IncidentType(), $entity, array(
+            'action' => $this->generateUrl('expert_incident_update', array('id' => $entity->getId())),
+            'method' => 'PUT',
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Traiter'));
+
+        return $form;
+    }
+    /**
+     * Edits an existing Incident entity.
+     *
+     */
+    public function updateAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('CertIncidentBundle:Incident')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Incident entity.');
+        }
+
+
+        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($entity);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isValid()) {
+            $user = $this->get('security.context')->getToken()->getUser();
+            $entity->setUser($user);
+            $entity->setTraitee(true);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('expert_incident_edit', array('id' => $id)));
+        }
+
+        return $this->render('CertIncidentBundle:Incident:edit.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+    /**
+     * Deletes a Incident entity.
+     *
+     */
+    public function deleteAction(Request $request, $id)
+    {
+        $form = $this->createDeleteForm($id);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('CertIncidentBundle:Incident')->find($id);
+
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find Incident entity.');
+            }
+
+            $em->remove($entity);
+            $em->flush();
+        }
+
+        return $this->redirect($this->generateUrl('expert_incident'));
+    }
+
+    /**
+     * Creates a form to delete a Incident entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('expert_incident_delete', array('id' => $id)))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->getForm()
+        ;
+    }
 }
-?>
