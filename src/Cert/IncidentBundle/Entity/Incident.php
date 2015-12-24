@@ -54,9 +54,6 @@ class Incident
      */
     private $traitee;
 
-
-    //private $user;
-
     //definition du controleur
     public function __construct() {
         $this->dateDeclaration = new \DateTime();

@@ -26,8 +26,6 @@ class AlerteType extends AbstractType
             ->add('solution','textarea')
             ->add('reference','textarea')
             ->add('revisions','textarea')
-            ->add('user_id','integer')
-
         ;
     }
     

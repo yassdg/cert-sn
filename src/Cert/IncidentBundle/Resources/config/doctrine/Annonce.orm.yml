@@ -24,6 +24,7 @@ Cert\IncidentBundle\Entity\Annonce:
     manyToOne:
         user:
             targetEntity: \Cert\UserBundle\Entity\User
+            inversedBy: annonces 
             joinColumn:
                 name: user_id
                 referencedColumnName: id

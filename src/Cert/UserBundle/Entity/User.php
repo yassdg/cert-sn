@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User extends BaseUser
 {
-  /**
+    /**
    * @ORM\Column(name="id", type="integer")
    * @ORM\Id
    * @ORM\GeneratedValue(strategy="AUTO")
@@ -26,18 +26,36 @@ class User extends BaseUser
    * @ORM\Column(name="prenom", type="string",length=255)
    * 
    */
-  protected $prenom;
+    protected $prenom;
   /**
    * @ORM\Column(name="telephone", type="string",length=255)
    * 
    */
-  protected $telephone;
+    protected $telephone;
 
-   /**
+  /**
    * @ORM\OneToMany(targetEntity="\Cert\IncidentBundle\Entity\Incident", mappedBy="user")   
    * 
    */
-  protected $incidents;
+    protected $incidents;
+
+    /**
+    * @ORM\OneToMany(targetEntity="\Cert\IncidentBundle\Entity\Alerte", mappedBy="user")   
+    * 
+    */
+    protected $alertes;
+
+    /**
+    * @ORM\OneToMany(targetEntity="\Cert\IncidentBundle\Entity\Vulnerabilite", mappedBy="user")   
+    * 
+    */
+    protected $vulnerabilites;
+
+    /**
+    * @ORM\OneToMany(targetEntity="\Cert\IncidentBundle\Entity\Annonce", mappedBy="user")   
+    * 
+    */
+    protected $annonces;
 
 
     /**
@@ -140,5 +158,104 @@ class User extends BaseUser
     public function getIncidents()
     {
         return $this->incidents;
+    }
+
+    /**
+     * Add alertes
+     *
+     * @param \Cert\IncidentBundle\Entity\Alerte $alertes
+     * @return User
+     */
+    public function addAlerte(\Cert\IncidentBundle\Entity\Alerte $alertes)
+    {
+        $this->alertes[] = $alertes;
+
+        return $this;
+    }
+
+    /**
+     * Remove alertes
+     *
+     * @param \Cert\IncidentBundle\Entity\Alerte $alertes
+     */
+    public function removeAlerte(\Cert\IncidentBundle\Entity\Alerte $alertes)
+    {
+        $this->alertes->removeElement($alertes);
+    }
+
+    /**
+     * Get alertes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAlertes()
+    {
+        return $this->alertes;
+    }
+
+    /**
+     * Add vulnerabilites
+     *
+     * @param \Cert\IncidentBundle\Entity\Vulnerabilite $vulnerabilites
+     * @return User
+     */
+    public function addVulnerabilite(\Cert\IncidentBundle\Entity\Vulnerabilite $vulnerabilites)
+    {
+        $this->vulnerabilites[] = $vulnerabilites;
+
+        return $this;
+    }
+
+    /**
+     * Remove vulnerabilites
+     *
+     * @param \Cert\IncidentBundle\Entity\Vulnerabilite $vulnerabilites
+     */
+    public function removeVulnerabilite(\Cert\IncidentBundle\Entity\Vulnerabilite $vulnerabilites)
+    {
+        $this->vulnerabilites->removeElement($vulnerabilites);
+    }
+
+    /**
+     * Get vulnerabilites
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getVulnerabilites()
+    {
+        return $this->vulnerabilites;
+    }
+
+    /**
+     * Add annonces
+     *
+     * @param \Cert\IncidentBundle\Entity\Annonce $annonces
+     * @return User
+     */
+    public function addAnnonce(\Cert\IncidentBundle\Entity\Annonce $annonces)
+    {
+        $this->annonces[] = $annonces;
+
+        return $this;
+    }
+
+    /**
+     * Remove annonces
+     *
+     * @param \Cert\IncidentBundle\Entity\Annonce $annonces
+     */
+    public function removeAnnonce(\Cert\IncidentBundle\Entity\Annonce $annonces)
+    {
+        $this->annonces->removeElement($annonces);
+    }
+
+    /**
+     * Get annonces
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAnnonces()
+    {
+        return $this->annonces;
     }
 }

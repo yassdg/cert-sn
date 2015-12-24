@@ -28,6 +28,7 @@ class IncidentType extends AbstractType
             'data_class' => 'Cert\IncidentBundle\Entity\Incident'
         ));
     }
+
     /**
      * @return string
      */

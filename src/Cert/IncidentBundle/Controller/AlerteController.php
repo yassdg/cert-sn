@@ -46,7 +46,10 @@ class AlerteController extends Controller
             $params = $request->request->get('cert_incidentbundle_alerte');
             $preferencArray = explode(';', $params['reference']);
             $entity->setReference($preferencArray);
-        
+            
+            $user = $this->get('security.context')->getToken()->getUser();
+            $entity->getUser($user);
+
             $em->persist($entity);
             $em->flush();
 

@@ -49,10 +49,15 @@ class Vulnerabilite
      */
     private $source;
 
+
     /**
      * @var \DateTime
      */
     private $dateModification;
+
+    public function __construct() {
+        $this->datepub = new \DateTime();
+    }
 
     /**
      * Get id
@@ -248,5 +253,33 @@ class Vulnerabilite
     public function getDateModification()
     {
         return $this->dateModification;
+    }
+    /**
+     * @var \Cert\UserBundle\Entity\User
+     */
+    private $user;
+
+
+    /**
+     * Set user
+     *
+     * @param \Cert\UserBundle\Entity\User $user
+     * @return Vulnerabilite
+     */
+    public function setUser(\Cert\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Cert\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

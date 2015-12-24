@@ -30,6 +30,7 @@ Cert\IncidentBundle\Entity\Alerte:
     manyToOne:
         user:
             targetEntity: \Cert\UserBundle\Entity\User
+            inversedBy: alertes 
             joinColumn:
                 name: user_id
                 referencedColumnName: id

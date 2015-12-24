@@ -26,4 +26,11 @@ Cert\IncidentBundle\Entity\Vulnerabilite:
             type: datetimetz
         dateModification:
             type: datetimetz
+    manyToOne:
+        user:
+            targetEntity: \Cert\UserBundle\Entity\User
+            inversedBy: vulnerabilites 
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
     lifecycleCallbacks: {  }

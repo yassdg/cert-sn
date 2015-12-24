@@ -39,6 +39,14 @@ class Annonce
      */
     private $dateAnnonce;
 
+     /**
+     * @var \Cert\UserBundle\Entity\User
+     */
+    private $user;
+
+    public function __construct() {
+        $this->dateAnnonce = new \DateTime();
+    }
 
     /**
      * Get id
@@ -164,12 +172,8 @@ class Annonce
     {
         return $this->dateAnnonce;
     }
-    /**
-     * @var \Cert\UserBundle\Entity\User
-     */
-    private $user;
 
-
+   
     /**
      * Set user
      *
