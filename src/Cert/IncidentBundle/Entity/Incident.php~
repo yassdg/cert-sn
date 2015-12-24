@@ -49,10 +49,6 @@ class Incident
      * @ORM\Column(name="dateDeclaration", type="date")
      */
     private $dateDeclaration;
-     /**
-     * @var boolean
-     */
-    private $traitee;
 
 
     //private $user;
@@ -60,7 +56,6 @@ class Incident
     //definition du controleur
     public function __construct() {
         $this->dateDeclaration = new \DateTime();
-        $this->traitee = false;
     }
 
     /**
@@ -194,7 +189,10 @@ class Incident
     {
         return $this->visiteur;
     }
-   
+    /**
+     * @var boolean
+     */
+    private $traitee;
 
 
     /**
@@ -242,10 +240,4 @@ class Incident
     {
         return $this->user;
     }
-    /**
-     * @var \Cert\UserBundle\Entity\User
-     */
-    private $user;
-
-
 }

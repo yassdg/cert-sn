@@ -1,6 +1,6 @@
 Cert\IncidentBundle\Entity\Vulnerabilite:
     type: entity
-    table: null
+    table: vulnerabilite
     repositoryClass: Cert\IncidentBundle\Entity\VulnerabiliteRepository
     id:
         id:

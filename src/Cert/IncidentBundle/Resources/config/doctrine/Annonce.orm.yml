@@ -1,6 +1,6 @@
 Cert\IncidentBundle\Entity\Annonce:
     type: entity
-    table: null
+    table: annonce
     repositoryClass: Cert\IncidentBundle\Entity\AnnonceRepository
     id:
         id:

@@ -1,6 +1,6 @@
 Cert\IncidentBundle\Entity\Visiteur:
     type: entity
-    table: null
+    table: visiteur
     repositoryClass: Cert\IncidentBundle\Entity\VisiteurRepository
     id:
         id:

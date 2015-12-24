@@ -1,6 +1,6 @@
 Cert\IncidentBundle\Entity\Incident:
     type: entity
-    table: null
+    table: incident
     repositoryClass: Cert\IncidentBundle\Entity\IncidentRepository
     id:
         id:
@@ -30,10 +30,11 @@ Cert\IncidentBundle\Entity\Incident:
     manyToOne:
         user:
             targetEntity: \Cert\UserBundle\Entity\User
+            inversedBy: incidents 
             joinColumn:
                 name: user_id
                 referencedColumnName: id
-    manyToOne:
+    ManyToOne:
         visiteur:
             targetEntity: \Cert\IncidentBundle\Entity\Visiteur
             joinColumn:
