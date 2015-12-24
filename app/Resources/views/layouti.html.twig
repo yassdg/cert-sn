@@ -1,0 +1,85 @@
+{# c'est le template principale du site web CERT sn#}
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>{% block title %}Cert sn{% endblock %}</title>
+    	<link  href="{{ asset('bundles/certincident/css/main.css') }}" rel="stylesheet">
+    	<link  href="{{ asset('bundles/certincident/css/bootstrap.css') }}" rel="stylesheet">
+    	<link  href="{{ asset('bundles/certincident/css/bootstrap.responsive.css') }}" rel="stylesheet">
+    	<link  href="{{ asset('bundles/certincident/css/creative.css') }}" rel="stylesheet">
+    	<link  href="{{ asset('bundles/certincident/css/plugins/morris.css') }}" rel="stylesheet">
+    	<link  href="{{ asset('bundles/certincident/css/font-awesome.css') }}" rel="stylesheet">
+    	<link  href="{{ asset('bundles/certincident/css/main.css') }}" rel="stylesheet">
+    	<link  href="{{ asset('bundles/certincident/img/glyphicons-halflings.png') }}" rel="stylesheet">
+
+    	<style type="text/css">
+		    .sidebar-nav {
+		        padding: 9px 0;
+		    }
+	    </style>
+	</head>
+	<body>	
+	<div id="idBande">
+	</div>
+	     <div id="idpresent">
+	     	<img src="{{ asset('bundles/certincident/img/logo.png') }}">
+	</div>
+	     
+	   <!------------------- MENU PRINCIPQL DU SITE -------------------------------------->  
+	<div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('cert_incident_accueil') }}">
+                <img id="logocert" src="{{ asset('bundles/certincident/img/logocert.png') }}"></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                	<li class="active"><a href="{{ path('cert_incident_accueil') }}"><i class="fa  fa-home"></i>Accueil</a></li>
+
+                   <li><a href="{{ path('cert_incident_apropos') }}" ><i class="fa  fa-eye"></i>A propos du CERT</a></li>
+              		<li>
+              			<a href="{{ path('cert_incident_services') }}"><i class="fa  fa-book"></i>Service</a>
+              		</li>
+              		 
+              		<li><a href="{{ path('fos_user_security_login') }}"><i class="fa  fa-user"></i>Administrateur</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+
+		<div class="container-fluid">
+			<div class="row-fluid">
+		        <div class="span12">
+		        	<!-- C'EST CE DIV QUI CONTIENDRA LE CONTENU DU SITE WEB QUE LES AUTRES PAGES VONT REMPLIR -->
+
+		          <!-- c'est ce contenu suivant qui va changer tout le temps          -->
+		        <div  id="container">
+		          	{% block body %}
+		          	{% endblock %}
+		          </div><!--/row-->
+		        </div><!--/span-->
+		      </div><!--/row-->
+		</div>
+
+		<div id="footer">
+			<p>
+				Copyright © 2015 CERT-SN. Tous droits réservés. Designed & developé par Yacine DIENG
+			</p>
+		</div>
+		<script src="{{ asset('bundles/certincident/js/jquery-1.11.3.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('bundles/certincident/js/jquery.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('bundles/certincident/js/bootstrap.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('bundles/certincident/js/bootstrap.min.js') }}" type="text/javascript"></script>
+		<script src="{{ asset('bundles/certincident/js/jquery.js') }}"></script>
+		<script src="{{ asset('bundles/certincident/js/jquery.dataTables.min.js') }}"></script>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+Cert\IncidentBundle\Entity\Incident:
+    type: entity
+    table: null
+    repositoryClass: Cert\IncidentBundle\Entity\IncidentRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        type:
+            type: string
+            length: '255'
+        description:
+            type: text
+        categorie:
+            type: string
+            length: '255'
+        dateDeclaration:
+            type: datetime
+        traitee:
+            type: boolean
+    OneToOne:
+        vulnerabilite:
+            targetEntity: \Cert\IncidentBundle\Entity\Vulnerabilite
+            joinColumn:
+                name: vulnerabilite_id
+                referencedColumnName: id
+    manyToOne:
+        user:
+            targetEntity: \Cert\UserBundle\Entity\User
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+    manyToOne:
+        visiteur:
+            targetEntity: \Cert\IncidentBundle\Entity\Visiteur
+            joinColumn:
+                name: visiteur_id
+                referencedColumnName: id
+                nullable: false
+    lifecycleCallbacks: {  }

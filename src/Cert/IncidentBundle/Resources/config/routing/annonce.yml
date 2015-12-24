@@ -1,0 +1,30 @@
+admin_annonce:
+    path:     /
+    defaults: { _controller: "CertIncidentBundle:Annonce:index" }
+
+admin_annonce_show:
+    path:     /{id}/show
+    defaults: { _controller: "CertIncidentBundle:Annonce:show" }
+
+admin_annonce_new:
+    path:     /new
+    defaults: { _controller: "CertIncidentBundle:Annonce:new" }
+
+admin_annonce_create:
+    path:     /create
+    defaults: { _controller: "CertIncidentBundle:Annonce:create" }
+    methods:  POST
+
+admin_annonce_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CertIncidentBundle:Annonce:edit" }
+
+admin_annonce_update:
+    path:     /{id}/update
+    defaults: { _controller: "CertIncidentBundle:Annonce:update" }
+    methods:  [POST, PUT]
+
+admin_annonce_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CertIncidentBundle:Annonce:delete" }
+    methods:  [POST, DELETE]

@@ -1,0 +1,12 @@
+{# cette vue n'herite de personne . elle sera inclue par d'autre vue#}
+
+<h3> Formulaire d'article</h3>
+
+{# contenue a mettre ici #}
+
+<div id="well">
+	<form method="post" {{ form_enctype(form) }}>
+		{{ form_widget(form) }}
+		<input type="submit" class="btn btn-primary" />
+	</form>
+</div>

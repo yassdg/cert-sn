@@ -1,0 +1,30 @@
+admin_vulnerabilite:
+    path:     /
+    defaults: { _controller: "CertIncidentBundle:Vulnerabilite:index" }
+
+admin_vulnerabilite_show:
+    path:     /{id}/show
+    defaults: { _controller: "CertIncidentBundle:Vulnerabilite:show" }
+
+admin_vulnerabilite_new:
+    path:     /new
+    defaults: { _controller: "CertIncidentBundle:Vulnerabilite:new" }
+
+admin_vulnerabilite_create:
+    path:     /create
+    defaults: { _controller: "CertIncidentBundle:Vulnerabilite:create" }
+    methods:  POST
+
+admin_vulnerabilite_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CertIncidentBundle:Vulnerabilite:edit" }
+
+admin_vulnerabilite_update:
+    path:     /{id}/update
+    defaults: { _controller: "CertIncidentBundle:Vulnerabilite:update" }
+    methods:  [POST, PUT]
+
+admin_vulnerabilite_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CertIncidentBundle:Vulnerabilite:delete" }
+    methods:  [POST, DELETE]

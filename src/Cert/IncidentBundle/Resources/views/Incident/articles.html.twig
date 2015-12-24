@@ -1,0 +1,48 @@
+{# template fils / page d'accueil du blog #}
+
+{% extends "CertIncidentBundle::layouti.html.twig" %}
+
+{% block title %} 
+	Articles - {{ parent() }} 
+{% endblock %}
+
+{% block certincident_body %}
+	<hr>
+	<div class="well">
+		<h2><center>Liste des articles</center> </h2>
+	</div>
+		<hr>
+		{% for article in liste_articles %}
+		<table class="table table-bordered table-hover table-striped" id="tab_logic">
+	        <tbody>
+
+	            <tr>
+	                <th class="bg-primary">Identification</th>
+	                <td><h4>{{ article.id }}</h4></td>
+	            </tr>
+	            <tr>
+	                <th class="text-center">Titre</th>
+	                <td>{{ article.titre }}</td>
+	            </tr>
+	             <tr>
+	                <th class="bg-primary">Illustration</th>
+	                <td><img src="{{ asset('uploads/documents/candels.jpg') }}" width="100px" height="600px" /></td>
+	            </tr>
+	            <tr>
+	                <th class="text-center">Contenu</th>
+	                <td>{{ article.contenu }}</td>
+	            </tr>
+	            <tr>
+	                <th class="text-center">Sources</th>
+	                <td><a href="{{ article.source }}" target="_blank">{{ article.source }}</a></td>
+	            </tr>
+	            <tr>
+	                <th class="text-center">References</th>
+	                <td>{{ article.reference }}</td>
+	            </tr>
+	        </tbody>
+    	</table>
+    	<hr>
+    	{% endfor %}
+	</div>
+{% endblock %}

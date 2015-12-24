@@ -1,0 +1,36 @@
+Cert\IncidentBundle\Entity\Alerte:
+    type: entity
+    table: alerte
+    repositoryClass: Cert\IncidentBundle\Entity\AlerteRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        titre:
+            type: string
+            length: '255'
+        systemeAffecte:
+            type: string
+            length: '255'
+        vuDensemble:
+            type: text
+        description:
+            type: text
+        impact:
+            type: text
+        solution:
+            type: text
+        reference:
+            type: array
+        revisions:
+            type: array
+    manyToOne:
+        user:
+            targetEntity: \Cert\UserBundle\Entity\User
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

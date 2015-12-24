@@ -1,0 +1,30 @@
+Cert\IncidentBundle\Entity\Annonce:
+    type: entity
+    table: null
+    repositoryClass: Cert\IncidentBundle\Entity\AnnonceRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        titre:
+            type: string
+            length: '255'
+        image:
+            type: text
+        source:
+            type: string
+            length: '255'
+        description:
+            type: text
+        dateAnnonce:
+            type: datetimetz
+    manyToOne:
+        user:
+            targetEntity: \Cert\UserBundle\Entity\User
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

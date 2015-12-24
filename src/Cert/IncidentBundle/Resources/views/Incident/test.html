@@ -1,0 +1,55 @@
+<div class="col-lg-3 col-md-6" id="annoncePlace">
+            <div class="panel panel-primary">
+                <div class="panel-heading ">
+                    <h4 class="panel-title glyphicon glyphicon-globe">Annonces </h4>
+                </div>
+                <div class="panel-body">
+                    {# affichage des aleres se trouvant dans la base de donnees #}
+                    <p>Quatres produits dans le syst&eacute;me nationale de sensibilisation sur la cybers&eacute;curite: elle  offre une vari&eacute;t&eacute;    
+                        d'informations pour les utilisateurs possedant une expertise technique vari&eacute;e. Ceux ayant  des interets plus techniques peuvent lire les alertes, l'activit&eacute; en cours , ou les bulletins. les utilsateurs a la recherche de plusieurs pi&eacute;ces d'interet g&eacute;n&eacute;ral peuvent lire les conseils.
+                    </p>
+                     {# affichage des aleres se trouvant dans la base de donnees #}
+                    <ul>
+                        {% for annonce in liste_annonces %}
+                            <li class="glyphicon glyphicon-chevron-right">
+                                {{ annonce.titre }}
+                                <a href="{{ path('cert_incident_voirAnnonce', { 'id': annonce.id }) }}">Detail</a><br/>
+                            </li>
+                          {% else %}
+                            <li>Pas d'annonces pour le moment !!) </li>
+                        {% endfor %}
+                    </ul>
+                    <li class="divider"></li>
+                        <a class="btn btn-primary" href="{{ path('cert_incident_ListeAnnonce') }}">liste complet &raquo;</a>
+                </div> 
+            </div> 
+        </div><!-- /.col-sm-6 -->
+        <hr>
+
+        <div class="col-lg-3 col-md-6" id="documentPlace">
+            <div class="panel panel-primary">
+                <div class="panel-heading ">
+                    <h4 class="panel-title glyphicon glyphicon-globe">Document Techniques </h4>
+                </div>
+                <div class="panel-body">
+                    {# affichage des aleres se trouvant dans la base de donnees #}
+                   <p>Quatres produits dans le syst&eacute;me nationale de sensibilisation sur la cybers&eacute;curite: elle offre une vari&eacute;t&eacute;    
+                    d'informations pour les utilisateurs possedant une expertise technique vari&eacute;e. Ceux ayant  des interets plus techniques peuvent lire les alertes, l'activit&eacute; en cours , ou les bulletins. les utilsateurs a la recherche de plusieurs pi&eacute;ces d'interet g&eacute;n&eacute;ral peuvent lire les conseils.
+                    </p>
+                     {# affichage des aleres se trouvant dans la base de donnees #}
+                    <ul>
+                        {% for annonce in liste_annonces %}
+                            <li class="glyphicon glyphicon-chevron-right">
+                                {{ annonce.titre }}
+                                <a href="{{ path('cert_incident_voirAnnonce', { 'id': annonce.id }) }}">Detail</a><br/>
+                            </li>
+                          {% else %}
+                            <li>Pas d'annonces pour le moment !!) </li>
+                        {% endfor %}
+                    </ul>
+                    <li class="divider"></li>
+                        <a class="btn btn-primary" href="{{ path('cert_incident_ListeAnnonce') }}">liste complet &raquo;</a>
+                </div> 
+            </div> 
+        </div><!-- /.col-sm-6 -->
+            </div>

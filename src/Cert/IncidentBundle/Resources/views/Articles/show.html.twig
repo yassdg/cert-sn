@@ -1,0 +1,59 @@
+{% extends '::layoutiAdmin.html.twig' %}
+
+{% block body %}
+    <h1>Articles</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Source</th>
+                <td>{{ entity.source }}</td>
+            </tr>
+            <tr>
+                <th>Reference</th>
+                <td>{{ entity.reference }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>
+                    
+                    {% if entity.image %}
+                        <img src="{{ asset('uploads/documents/candels.jpg') }}" width="100px" height="100px" />
+                    {% else %}
+                         Pas d'image de profil chargée !
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ entity.titre }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ entity.contenu }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ entity.date|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_articles') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('admin_articles_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

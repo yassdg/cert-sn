@@ -1,0 +1,16 @@
+Cert\IncidentBundle\Entity\SolutionIncident:
+    type: entity
+    table: null
+    repositoryClass: Cert\IncidentBundle\Entity\SolutionIncidentRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        impact:
+            type: text
+        solution:
+            type: text
+    lifecycleCallbacks: {  }

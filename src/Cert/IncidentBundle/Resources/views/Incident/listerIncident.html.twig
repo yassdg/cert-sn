@@ -1,0 +1,39 @@
+{% extends '::layoutiAdmin.html.twig' %}
+
+{% block title %} 
+	Liste Incident
+{% endblock %}
+
+{% block body %}
+    <center><h3>Liste des incidents enregistrés</h3></center>
+    <hr>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped" id="utilisateurs">
+            <thead>
+                <tr>
+                    <th>Id </th>
+                    <th>Nom </th>
+                    <th>Catégorie </th>
+                    <th>Date </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for incident in liste_incident %}
+
+                <tr>
+                    <td><a href="#">{{ incident.id }}</a></td>
+                    <td>{{ incident.type }}</td>
+                    <td>{{ incident.categorie }}</td>
+                    <td>{{ incident.dateDeclaration|date('d/m/y') }}</td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-success"><i class="fa fa-2x fa-eye"></i>voir</a>
+                        <a href="#" class="btn btn-sm btn-info"><i class="fa fa-2x fa-edit"></i>traiter</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+{% endblock %}

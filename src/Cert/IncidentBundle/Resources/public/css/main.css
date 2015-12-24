@@ -1,0 +1,138 @@
+.container-fluid {
+    margin-right: 135px;
+    margin-left: 138px;
+}
+#logo1{
+    margin-left: 100px;
+}
+
+#logo2{
+   margin-left: 1023px;
+position: absolute;
+float: left;
+margin-top: -186px;
+}
+#idPresent{
+margin-left: 349px;
+position: absolute;
+float: left;
+margin-top: -119px;
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+font-size: 51px;
+}
+#idBande{
+	height: 27px;
+	background-color: #1B1B1B;
+    background-image: linear-gradient(to bottom, #222, #111);
+    background-repeat: repeat-x;
+    border-color: #252525;
+}
+#footer {
+    border: 0px none;
+    outline: 0px none;
+    vertical-align: baseline;
+    height: 100px;
+    display: block;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #F9F0F0;
+    background-color: #000;
+    margin-top: 63px;
+    margin-bottom: 0px;
+}
+	#cert_image{
+	height: 117px;
+}
+#introduction {
+    padding: 0px 20px 15px 0px;
+    margin: 0px;
+    font-size: 16px;
+    line-height: 25px;
+    letter-spacing: 0em;
+}
+
+#NousContacter{
+	float: left;
+	width: 230px;
+	padding: 20px 0px 0px 50px;
+}
+#contenuPage{
+	margin-top: 38px;
+	margin-left: -20px;
+	margin-bottom: -93px;
+
+}
+
+#footer p{
+	text-align: center;
+}
+#vulnerabilitePlace .panel-danger {
+    border-color: #EBCCD1;
+    height: 247px;
+}
+
+#boutonVul {
+    margin-left: 80%;
+    margin-top: 1%;
+}
+.panel-success {
+    border-color: #D6E9C6;
+    height: 247px;
+}
+#boutonAlerte {
+    margin-left: 74%;
+    margin-top: 4%;
+}
+#contact {
+        width: 100%;
+    display: block;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #a5d8c7;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+        box-sizing: border-box;
+            font-family: proxima-nova, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    background-color: #1F72A6;
+    border-top: 1px solid #1b926c;
+        padding-top: 50px;
+    padding-bottom: 55px;
+}
+
+.col-lg-offset-2 {
+    margin-left: -23.333%;
+    margin-top: -3%;
+}
+.fa-3x {
+    font-size: 3em;
+    margin-top: -4%;
+    margin-bottom: 2%;
+}
+#logo{
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: blue;
+}
+#logocert{
+    margin-top: -15px;
+}
+#myCarousel{
+   border-radius-topright: 2em;
+border-radius-topleft: 2em;
+
+float: left;
+    clear: left;
+    margin-right: 2em;
+    width: 1190px;
+    height: 250px;
+    border: 6px solid blue;
+    line-height: 60px;
+    text-align: center;
+}
+#signalerIncident{
+     margin-left: 80%;
+    margin-top: 1%;
+}

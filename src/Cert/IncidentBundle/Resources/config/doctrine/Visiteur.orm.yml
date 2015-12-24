@@ -1,0 +1,27 @@
+Cert\IncidentBundle\Entity\Visiteur:
+    type: entity
+    table: null
+    repositoryClass: Cert\IncidentBundle\Entity\VisiteurRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: '255'
+        prenom:
+            type: string
+            length: '255'
+        email:
+            type: string
+            length: '255'
+        organisation:
+            type: string
+            length: '255'
+        profession:
+            type: string
+            length: '255'
+    lifecycleCallbacks: {  }

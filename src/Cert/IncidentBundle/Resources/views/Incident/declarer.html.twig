@@ -1,0 +1,26 @@
+{# template fils / page d'accueil du blog #}
+
+{% extends "CertIncidentBundle::layouti.html.twig" %}
+
+{% block title %} 
+	Gestion incident - {{ parent() }} 
+{% endblock %}
+
+{% block certincident_body %}
+
+	<h3> Formulaire de declaration d'incident</h3>
+
+	{# contenue a mettre ici #}
+	<div class="well">
+		<form method="post" {{ form_enctype(form) }}>
+			{{ form_widget(form) }}
+			{# {{ form_row(form.type) }} #}
+			{# {{ form_row(form.utilisateur.nom) }} #}
+
+			<input type="submit" class="btn btn-primary" />
+		</form>
+	</div>
+
+	
+{% endblock %}
+

@@ -1,0 +1,30 @@
+admin_alerte:
+    path:     /
+    defaults: { _controller: "CertIncidentBundle:Alerte:index" }
+
+admin_alerte_show:
+    path:     /{id}/show
+    defaults: { _controller: "CertIncidentBundle:Alerte:show" }
+
+admin_alerte_new:
+    path:     /new
+    defaults: { _controller: "CertIncidentBundle:Alerte:new" }
+
+admin_alerte_create:
+    path:     /create
+    defaults: { _controller: "CertIncidentBundle:Alerte:create" }
+    methods:  POST
+
+admin_alerte_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CertIncidentBundle:Alerte:edit" }
+
+admin_alerte_update:
+    path:     /{id}/update
+    defaults: { _controller: "CertIncidentBundle:Alerte:update" }
+    methods:  [POST, PUT]
+
+admin_alerte_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CertIncidentBundle:Alerte:delete" }
+    methods:  [POST, DELETE]

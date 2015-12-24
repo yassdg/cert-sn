@@ -1,0 +1,17 @@
+{% extends '::layoutiAdmin.html.twig' %}
+
+{% block body -%}
+    <h2>Cr&eacute;ation Compte </h2>
+
+    <hr>
+    
+    {{ form(form) }}
+
+    <ul class="record_actions">
+	    
+	        <a href="{{ path('admin_users') }}" class="btn btn-primary btn-large">
+	            Retour a la liste des utlusateurs
+	        </a>
+	    
+	</ul>
+{% endblock %}

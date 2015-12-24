@@ -1,0 +1,18 @@
+Cert\IncidentBundle\Entity\ClasseIncident:
+    type: entity
+    table: null
+    repositoryClass: Cert\IncidentBundle\Entity\ClasseIncidentRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        groupe:
+            type: array
+        severite:
+            type: array
+        tempDeReponse:
+            type: integer
+    lifecycleCallbacks: {  }

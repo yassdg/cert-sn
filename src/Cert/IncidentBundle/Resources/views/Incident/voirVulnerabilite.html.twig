@@ -1,0 +1,32 @@
+{% extends "::layouti.html.twig" %}
+
+{% block title %} 
+     {{ parent() }} 
+{% endblock %}
+
+{% block body -%}
+   
+    <h3>Vulnerabilite: {{ entity.titre }}</h3>
+     <div class="well">
+    <h3>Description</h3>            
+        <p>{{ entity.description }}</p>
+    <h3>Impact</h3>
+            <p>{{ entity.impact }}</p>
+    <h3>Solution</h3>
+            <p>{{ entity.solution }}</p>
+    <h3>References</h3>
+        <ul>
+            {% for ref in entity.reference %}
+                <li><a target="_blank" href="{{ ref }}">{{ ref }}</a></li>
+            {% endfor %}
+        </ul>
+    <h3>Date de Publication</h3>
+        <p>{{ entity.datePub|date('d/m/Y') }}</p>
+    <h3>Date deernier Modification</h3>
+        <p>{{ entity.dateModification|date('d/m/Y') }}</p>
+    </div>
+    <a href="{{ path('cert_incident_accueil') }}" class="btn btn-sm btn-info">
+    <i class="fa fa-2x fa-home"></i>Retourner à la page d'accueil</a>
+    <a href="#" class="btn btn-sm btn-danger">
+    <i class="fa fa-2x fa-download"></i>Télécharger</a>
+{% endblock %}

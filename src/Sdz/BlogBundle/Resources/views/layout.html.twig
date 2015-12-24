@@ -1,0 +1,19 @@
+{# template du bundle qui herite du template du site web general#}
+
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+	Blog - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+	{# definition de sous titre commun a toutes les pages du bundle, par exemple #}
+	<h1>Blog</h1>
+
+	<hr>
+
+	{# definition de nouveau block que les vues du blog vont remplir #}
+	{% block sdzblog_body %}
+	
+	{% endblock %}
+{% endblock %}

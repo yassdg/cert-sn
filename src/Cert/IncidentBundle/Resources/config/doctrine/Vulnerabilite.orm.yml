@@ -1,0 +1,29 @@
+Cert\IncidentBundle\Entity\Vulnerabilite:
+    type: entity
+    table: null
+    repositoryClass: Cert\IncidentBundle\Entity\VulnerabiliteRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        titre:
+            type: string
+            length: '255'
+        description:
+            type: text
+        impact:
+            type: text
+        solution:
+            type: text
+        reference:
+            type: array
+        source:
+            type: text
+        datepub:
+            type: datetimetz
+        dateModification:
+            type: datetimetz
+    lifecycleCallbacks: {  }

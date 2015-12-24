@@ -1,0 +1,11 @@
+cert_user_admin_users:
+    resource: "@CertUserBundle/Resources/config/routing/user.yml"
+    prefix:   /admin/users
+
+cert_user_acceuil_admin_user:
+    pattern:    /acceuil_admin_user
+    defaults:    { _controller: CertUserBundle:admin:acceuiladminuser }
+
+cert_incident_admin_alerte:
+    resource: "@CertIncidentBundle/Resources/config/routing/alerte.yml"
+    prefix:   /admin/alerte

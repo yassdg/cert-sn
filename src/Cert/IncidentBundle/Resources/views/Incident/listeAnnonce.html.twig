@@ -1,0 +1,29 @@
+{% extends "CertIncidentBundle::layouti.html.twig" %}
+
+{% block title %} 
+	Incident - {{ parent() }} 
+{% endblock %}
+
+{% block certincident_body %}
+
+	<div class="well">
+		<h3>Liste des annonces </h3>
+	</div>
+		<hr>
+		{% for annonce in annonces %}
+			<div class="table-responsive">
+		        <table class="table table-bordered table-hover">
+			        <tbody>
+			            <tr>
+			                <th class="bg-default">Titre</th>
+			                <td>
+			                	<h4>{{ annonce.titre }}</h4>
+			                	<a href="{{ path('cert_incident_voirAnnonce', { 'id': annonce.id }) }}">Detail</a>
+			                </td>
+			        </tbody>
+		    	</table>
+		    	<hr>
+	    	</div>
+    	{% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends '::layoutiAdmin.html.twig' %}
+
+{% block body -%}
+
+    <h1 >Profile Compte</h1>
+    <hr>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Id </th>
+                    <th>Nom </th>
+                    <th>Prenom</th>
+                    <th>Login</th>
+                    <th>Telephone </th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ entity.id }}</td>
+                    <td>{{ entity.nom }}</td>
+                    <td>{{ entity.prenom }}</td>
+                    <td>{{ entity.username }}</td>
+                    <td>{{ entity.telephone }}</td>
+                    <td>{{ entity.email }}</td>
+                    <td>
+                        <ul>
+                            {% for role in entity.roles %}
+                                <li>{{ role }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="{{ path('admin_users') }}" class="btn btn-sm btn-info">Retour sur la liste</a>
+        <a href="{{ path('admin_users_edit', { 'id': entity.id }) }}" class="btn btn-sm btn-success"><i  class="fa fa-2x fa-edit"></i>Editer compte</a>
+        <i class="icon-trash"></i>{{ form(delete_form) }}
+        
+    </div>
+{% endblock %}

@@ -1,0 +1,79 @@
+cert_incident_admin_annonce:
+    resource: "@CertIncidentBundle/Resources/config/routing/annonce.yml"
+    prefix:   /admin/annonce
+
+cert_incident_admin_vulnerabilite:
+    resource: "@CertIncidentBundle/Resources/config/routing/vulnerabilite.yml"
+    prefix:   /admin/vulnerabilite
+
+cert_incident_admin_alerte:
+    resource: "@CertIncidentBundle/Resources/config/routing/alerte.yml"
+    prefix:   /admin/alerte
+
+cert_incident_document:
+    resource: "@CertIncidentBundle/Resources/config/routing/document.yml"
+    prefix:   /document
+
+cert_incident_admin_articles:
+    resource: "@CertIncidentBundle/Resources/config/routing/articles.yml"
+    prefix:   /admin/articles
+    defaults:    { _controller: CertIncidentBundle:Articles:index }
+
+
+cert_incident_accueil:
+    pattern:    /incident
+    defaults:    { _controller: CertIncidentBundle:Incident:index }
+
+cert_incident_apropos:
+    pattern:    /incident/apropos
+    defaults:    { _controller: CertIncidentBundle:Incident:apropos }
+
+cert_incident_services:
+    pattern:    /incident/services
+    defaults:    { _controller: CertIncidentBundle:Incident:services }
+
+
+cert_incident_partenaires:
+    pattern:    /incident/partenaires
+    defaults:    { _controller: CertIncidentBundle:Incident:partenaires }
+
+cert_incident_contact:
+    pattern:    /incident/contact
+    defaults:    { _controller: CertIncidentBundle:Incident:contact }
+
+cert_incident_declarer:
+    pattern:    /incident/di
+    defaults:    { _controller: CertIncidentBundle:Incident:declarer }
+
+cert_incident_ListingIncident:
+    pattern:    /incident/li
+    defaults:    { _controller: CertIncidentBundle:Incident:listerIncident }
+
+cert_incident_ListingVulnerabilite:
+    pattern:    /incident/listeVulnerabilite
+    defaults:    { _controller: CertIncidentBundle:Incident:listerVulnerabilite }
+
+cert_incident_ListeAlerte:
+    pattern:    /incident/alertes
+    defaults:    { _controller: CertIncidentBundle:Incident:listeAlerte }
+
+cert_incident_ListeAnnonce:
+    pattern:    /incident/annonces
+    defaults:    { _controller: CertIncidentBundle:Incident:listeAnnonce }
+
+cert_incident_articles:
+    pattern:    /incident/articles
+    defaults:    { _controller: CertIncidentBundle:Incident:listeArticles }
+
+cert_incident_voirAlerte:
+    pattern:    /{id}/voirAlerte
+    defaults:    { _controller: CertIncidentBundle:Incident:voirAlerte }
+
+cert_incident_voirVulnerabilite:
+    pattern:    /{id}/voirVulnerabilite
+    defaults:    { _controller: CertIncidentBundle:Incident:voirVulnerabilite }
+cert_incident_voirAnnonce:
+    pattern:    /{id}/annonce
+    defaults:    { _controller: CertIncidentBundle:Incident:annonce }
+
+

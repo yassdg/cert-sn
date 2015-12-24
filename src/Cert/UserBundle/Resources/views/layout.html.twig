@@ -1,0 +1,33 @@
+
+{# src/Cert/UserBundle/Ressources/views/layout.html.twig #}
+
+{# on etend notre layout #}
+{% extends "CertIncidentBundle::layouti.html.twig" %}
+
+{% block body %}
+    
+    {# on affiche les messages flash que definissent les controleurs du bundle #}
+    <div class="well">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+            <b>Connecté en tant que {{ app.user.username }} </b>
+                    -
+            <a href="{{ path('fos_user_security_logout') }}" class="btn">Déconnexion</a>
+        {% else %}
+            <a href="{{ path('fos_user_security_login') }}" class="btn">Connexion</a>
+        {% endif %}
+
+        {% for key, message in app.session.flashbag.all() %}
+            <div class="alert alert-{{ key }}">
+                {{ message|trans({}, 'FOSUserBundle') }}
+            </div>
+        {% endfor %}
+
+        {# on definit ce block, dans lequel vont venir s'inserer les autres vues du bundle #}
+
+        {% block fos_user_content %}
+        
+        {% endblock fos_user_content %}
+    </div>
+
+{% endblock %}

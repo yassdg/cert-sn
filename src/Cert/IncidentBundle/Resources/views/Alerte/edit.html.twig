@@ -1,0 +1,17 @@
+{% extends '::layoutiAdmin.html.twig' %}
+
+{% block body -%}
+    <h1>Alerte &eacute;dition</h1>
+    <hr>
+    <div class="well">
+        {{ form(edit_form) }}
+    </div>
+    <ul>
+	    
+	    <a href="{{ path('admin_alerte') }}" class="btn btn-sm btn-info">
+            <i class="fa fa-2x fa-menu-left"></i>Retourner &aacute; la liste
+        </a>
+	    
+	    <li>{{ form(delete_form) }}</li>
+	</ul>
+{% endblock %}

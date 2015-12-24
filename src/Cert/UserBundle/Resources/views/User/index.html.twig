@@ -1,0 +1,36 @@
+{% extends '::layoutiAdmin.html.twig' %}
+
+{% block body -%}
+    <center><h3>Liste des comptes utilisateur</h3></center>
+    <hr>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped" id="utilisateurs">
+            <thead>
+                <tr>
+                    <th>Id </th>
+                    <th>Login </th>
+                    <th>email </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+
+                <tr>
+                    <td><a href="{{ path('admin_users_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    <td>{{ entity.username }}</td>
+                    <td>{{ entity.email }}</td>
+                    <td>
+                        <a href="{{ path('admin_users_show', { 'id': entity.id }) }}" class="btn btn-sm btn-success"><i class="fa fa-2x fa-eye"></i>voir</a>
+                        <a href="{{ path('admin_users_edit', { 'id': entity.id }) }}" class="btn btn-sm btn-info"><i class="fa fa-2x fa-edit"></i>&eacute;diter</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    <a href="{{ path('admin_users_new') }}" class="btn btn-primary btn-large">
+        Cr&eacute;er un nouveau compte
+    </a>
+    </div>
+    
+    {% endblock %}

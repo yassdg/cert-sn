@@ -1,0 +1,34 @@
+{% extends "::layouti.html.twig" %}
+
+{% block title %} 
+     {{ parent() }} 
+{% endblock %}
+
+{% block body -%}
+   <hr>
+    <h1>Alerte de securite sur: {{ entity.titre }}</h1>
+    <div class="well">
+        <h2>Systeme Affecte</h2><p>{{ entity.systemeAffecte }}</p>
+
+        <h3>Vu d'ensemble</h3><p>{{ entity.vuDensemble|raw }}</p>
+
+        <h3>Description</h3><p>{{ entity.description|raw }}</p>
+
+        <h3>Impact</h3><p>{{ entity.impact }}</p>
+
+        <h3>Solution</h3><p>{{ entity.solution|raw }}</p>
+        
+        <h3>References</h3>
+            <ul>
+                {% for ref in entity.reference %}
+                     <li><a target="_blank" href="{{ ref }}">{{ ref }}</a></li>
+                {% endfor %}
+            </ul>
+        <h3>Revision</h3>
+        <p>{{ entity.revisions }}</p>
+    </div>
+    <a href="{{ path('cert_incident_accueil') }}" class="btn btn-sm btn-info">
+    <i class="fa fa-2x fa-home"></i>Retourner à la page d'accueil</a>
+    <a href="#" class="btn btn-sm btn-danger">
+    <i class="fa fa-2x fa-download"></i>Télécharger</a>
+{% endblock %}

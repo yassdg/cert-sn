@@ -1,0 +1,37 @@
+{% extends "CertIncidentBundle::layouti.html.twig" %}
+
+{% block title %} 
+	Incident - {{ parent() }} 
+{% endblock %}
+
+{% block certincident_body %}
+	<div class="well">
+		<h3>Liste des alertes de securites </h3>
+		<div class="count">
+			{{ pagination.getTotalItemCount }}
+		</div>
+	</div>
+	<hr>
+	<table>
+		<tr>
+			<th>{{ knp_pagination_sortable(pagination, 'Id', 'Alerte.id') }}</th>
+			<th {% if pagination.isSorted('Alerte.Titre')%}class="sorted"{% endif %}>
+				 {{ knp_pagination_sortable(pagination, 'Titre', 'Alerte.titre') }}
+			</th>
+		</tr>
+
+		{# contenu du tableau de donnees #}
+		{% for alerte in pagination %}
+			<tr {% if loop.index is odd %} class="color"{% endif %}>
+				<td>{{ alerte.id }}</td>
+				<td>{{ alerte.systemeAffecte }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+	<div class="navigation">
+		{{ knp_pagination_render(pagination) }}
+	</div>
+	
+		
+{% endblock %}
+

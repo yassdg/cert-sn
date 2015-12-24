@@ -1,0 +1,19 @@
+{# c'est le template du bundle Incident qui herite du template principale du site CERT sn#}
+
+{% extends "::layouti.html.twig" %}
+
+{% block title %}
+	Incident - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+	{# definition de sous titre commun a toutes les pages du bundle, par exemple #}
+
+	{# definition de nouveau block que les vues du blog vont remplir #}
+	{% block certincident_body %}
+		
+	{% endblock %}
+
+{% endblock %}
+	
+

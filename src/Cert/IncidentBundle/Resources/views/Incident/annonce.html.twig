@@ -1,0 +1,18 @@
+{% extends "::layouti.html.twig" %}
+
+{% block title %} 
+     {{ parent() }} 
+{% endblock %}
+
+{% block body -%}
+   <hr>
+    <h1>Annonce: {{ entity.titre }}</h1>
+    <hr>
+    <div class="well">
+        <h2>Description</h2><p>{{ entity.description }}</p>
+        <h3>Source</h3><p>{{ entity.source }}</p>
+        <h3>Date</h3><p>{{ entity.dateAnnonce|date('d/m/y') }}</p>
+    </div>
+    <a href="{{ path('cert_incident_accueil') }}" class="btn btn-sm btn-info">
+            <i class="fa fa-2x fa-menu-left"></i>Accueil</a>
+{% endblock %}

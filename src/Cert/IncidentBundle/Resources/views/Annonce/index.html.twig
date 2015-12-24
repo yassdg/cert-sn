@@ -1,0 +1,39 @@
+{% extends '::layoutiAdmin.html.twig' %}
+
+{% block body -%}
+    <h1>Liste Annonce </h1>
+    <hr>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Titre</th>
+                    <th>Source</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td><a href="{{ path('admin_annonce_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    <td>{{ entity.titre }}</td>
+                    <td>{{ entity.source }}</td>
+                    <td>
+                        <ul>
+                            <a href="{{ path('admin_annonce_edit', { 'id': entity.id }) }}" class="btn btn-sm btn-success"/><i class="fa fa-1x fa-edit"></i>éditer</a>
+                            <a href="{{ path('admin_annonce_show', { 'id': entity.id }) }}" class="btn btn-sm btn-info"/><i class="fa fa-1x fa-eye"></i>voir</a>
+                            
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <ul>
+            <a href="{{ path('admin_annonce_new') }}" class="btn btn-sm btn-success">
+                <i class="fa fa-2x fa-edit"></i>Cr&eacute;er nouvelle alerte
+            </a>
+        </ul>
+    </div>
+    {% endblock %}

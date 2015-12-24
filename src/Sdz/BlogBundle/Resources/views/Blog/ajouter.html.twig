@@ -1,0 +1,20 @@
+{% extends "SdzBlogBundle::layout.html.twig" %}
+
+{% block title %}
+	ajouter un article - {{ parent() }}
+{% endblock %}
+
+{% block sdzblog_body %}
+	
+	<h2>Ajouter un article</h2>
+
+	{% include "SdzBlogBundle:Blog:formulaire.html.twig" %}
+
+	<p>
+		cette article sera ajoute directement 
+		sur la page d'accueil apres validation du formulaire
+	<p/>
+	
+
+{% endblock  %}
+

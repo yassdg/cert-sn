@@ -1,0 +1,18 @@
+{% extends '::layoutiAdmin.html.twig' %}
+
+{% block body -%}
+    <h1>Edition Compte Utilisateur</h1>
+
+    <hr>
+
+    {{ form(edit_form) }}
+
+    <ul class="record_actions">
+	    <li>
+	        <a href="{{ path('admin_users') }}" class="btn">
+	            Retour &aacute; la liste des utilisateurs
+	        </a>
+	    </li>
+	    <li>{{ form(delete_form) }}</li>
+	</ul>
+{% endblock %}

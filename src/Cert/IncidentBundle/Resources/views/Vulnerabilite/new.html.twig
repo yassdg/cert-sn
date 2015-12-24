@@ -1,0 +1,15 @@
+{% extends '::layoutiAdmin.html.twig' %}
+
+{% block body -%}
+    <h1>Vulnerabilite creation</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_vulnerabilite') }}" class="btn btn-sm btn-info">
+            <i class="fa fa-2x fa-menu-left"></i>Retourner &aacute; la liste</a>
+        </a>
+    </li>
+</ul>
+{% endblock %}

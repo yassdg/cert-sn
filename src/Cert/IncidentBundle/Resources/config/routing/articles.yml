@@ -1,0 +1,30 @@
+admin_articles:
+    path:     /
+    defaults: { _controller: "CertIncidentBundle:Articles:index" }
+
+admin_articles_show:
+    path:     /{id}/show
+    defaults: { _controller: "CertIncidentBundle:Articles:show" }
+
+admin_articles_new:
+    path:     /new
+    defaults: { _controller: "CertIncidentBundle:Articles:new" }
+
+admin_articles_create:
+    path:     /create
+    defaults: { _controller: "CertIncidentBundle:Articles:create" }
+    methods:  POST
+
+admin_articles_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CertIncidentBundle:Articles:edit" }
+
+admin_articles_update:
+    path:     /{id}/update
+    defaults: { _controller: "CertIncidentBundle:Articles:update" }
+    methods:  [POST, PUT]
+
+admin_articles_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CertIncidentBundle:Articles:delete" }
+    methods:  [POST, DELETE]

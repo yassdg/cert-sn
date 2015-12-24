@@ -1,0 +1,30 @@
+document:
+    path:     /
+    defaults: { _controller: "CertIncidentBundle:Document:index" }
+
+document_show:
+    path:     /{id}/show
+    defaults: { _controller: "CertIncidentBundle:Document:show" }
+
+document_new:
+    path:     /new
+    defaults: { _controller: "CertIncidentBundle:Document:new" }
+
+document_create:
+    path:     /create
+    defaults: { _controller: "CertIncidentBundle:Document:create" }
+    methods:  POST
+
+document_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CertIncidentBundle:Document:edit" }
+
+document_update:
+    path:     /{id}/update
+    defaults: { _controller: "CertIncidentBundle:Document:update" }
+    methods:  [POST, PUT]
+
+document_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CertIncidentBundle:Document:delete" }
+    methods:  [POST, DELETE]
