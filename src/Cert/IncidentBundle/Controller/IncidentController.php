@@ -35,7 +35,6 @@ class IncidentController extends Controller
             );
             $entityForms[] = $result;
         }
-
         return $this->render('CertIncidentBundle:Incident:index.html.twig', array(
             'entities' => $entityForms,
         ));
@@ -49,21 +48,17 @@ class IncidentController extends Controller
         $entity = new Incident();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
             return $this->redirect($this->generateUrl('expert_incident_show', array('id' => $entity->getId())));
         }
-
         return $this->render('CertIncidentBundle:Incident:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
-
     /**
      * Creates a form to create a Incident entity.
      *
@@ -77,9 +72,7 @@ class IncidentController extends Controller
             'action' => $this->generateUrl('expert_incident_create'),
             'method' => 'POST',
         ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
+        $form->add('submit', 'submit', array('label' => 'Créer'));
         return $form;
     }
 
@@ -91,7 +84,6 @@ class IncidentController extends Controller
     {
         $entity = new Incident();
         $form   = $this->createCreateForm($entity);
-
         return $this->render('CertIncidentBundle:Incident:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
@@ -105,15 +97,11 @@ class IncidentController extends Controller
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('CertIncidentBundle:Incident')->find($id);
-
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Incident entity.');
         }
-
         $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('CertIncidentBundle:Incident:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
@@ -128,21 +116,17 @@ class IncidentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('CertIncidentBundle:Incident')->find($id);
-
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Incident entity.');
         }
-
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('CertIncidentBundle:Incident:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
-
     /**
     * Creates a form to edit a Incident entity.
     *
@@ -156,9 +140,7 @@ class IncidentController extends Controller
             'action' => $this->generateUrl('expert_incident_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
-
         $form->add('submit', 'submit', array('label' => 'Traiter'));
-
         return $form;
     }
     /**
@@ -168,27 +150,20 @@ class IncidentController extends Controller
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('CertIncidentBundle:Incident')->find($id);
-
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Incident entity.');
         }
-
-
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
-
         if ($editForm->isValid()) {
             $user = $this->get('security.context')->getToken()->getUser();
             $entity->setUser($user);
             $entity->setTraitee(true);
             $em->flush();
-
             return $this->redirect($this->generateUrl('expert_incident_edit', array('id' => $id)));
         }
-
         return $this->render('CertIncidentBundle:Incident:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),

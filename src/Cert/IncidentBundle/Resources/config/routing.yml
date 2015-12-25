@@ -1,6 +1,4 @@
-cert_incident_expert_incident:
-    resource: "@CertIncidentBundle/Resources/config/routing/incident.yml"
-    prefix:   /expert/incident
+
 
 cert_incident_expert:
     resource: "@CertIncidentBundle/Resources/config/routing/incident.yml"

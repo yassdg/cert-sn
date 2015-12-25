@@ -1,14 +1,10 @@
 {% extends '::layoutiAdmin.html.twig' %}
 
 {% block body -%}
- <script type="text/javascript">
-                $(document).ready(function() {
-                    $('#alerteTable').DataTable();
-} );
-        </script>
+
    <center> <h1>Alerte Description</h1></center>
 
-    <div class="table-responsive">
+    <div class="well">
         <table class="table table-bordered table-hover" id="alerteTable">
             <tbody>
                 <tr>
@@ -43,7 +39,7 @@
                 <th>Reference</th>
                 <td>
                     <ul>
-                        {% for ref in entity.reference %}
+                        {% for ref in references %}
                             <li>{{ ref }}</li>
                         {% endfor %}
                     </ul>
@@ -54,10 +50,13 @@
 
         <ul >
             <a href="{{ path('admin_alerte') }}" class="btn btn-sm btn-info">
-                <i class="fa fa-2x fa-menu-left"></i>Retourner &aacute; la liste
+                <i class="fa fa-2x fa-menu-left"></i>Retourner à la liste
             </a>
             <a href="{{ path('admin_alerte_edit', { 'id': entity.id }) }}" class="btn btn-sm btn-info"><i class="fa fa-2x fa-edit"></i>Editer</a>
             {{ form(delete_form) }}
         </ul>
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent()     }}
 {% endblock %}

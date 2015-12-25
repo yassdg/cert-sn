@@ -29,33 +29,27 @@ class AlerteController extends Controller
             'entities' => $entities,
         ));
     }
-    /**
-     * 
-     *
-     */
+    
     public function createAction(Request $request)
     {
-       
         //l'utilisateur a les droit de creer un nouvel utilisateur
         $entity = new Alerte();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $params = $request->request->get('cert_incidentbundle_alerte');
             $preferencArray = explode(';', $params['reference']);
             $entity->setReference($preferencArray);
-            
             $user = $this->get('security.context')->getToken()->getUser();
-            $entity->getUser($user);
+            $entity->setUser($user);
 
             $em->persist($entity);
             $em->flush();
 
             return $this->redirect($this->generateUrl('admin_alerte_show', array('id' => $entity->getId())));
         }
-
         return $this->render('CertIncidentBundle:Alerte:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
@@ -102,10 +96,9 @@ class AlerteController extends Controller
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('CertIncidentBundle:Alerte')->find($id);
-
+        $em         = $this->getDoctrine()->getManager();
+        $entity     = $em->getRepository('CertIncidentBundle:Alerte')->find($id);
+        $references = $entity->getReference(); 
         if (!$entity) {
             throw $this->createNotFoundException('alerte inexistante.');
         }
@@ -114,6 +107,7 @@ class AlerteController extends Controller
 
         return $this->render('CertIncidentBundle:Alerte:show.html.twig', array(
             'entity'      => $entity,
+            'references'  => $references,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -127,14 +121,12 @@ class AlerteController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('CertIncidentBundle:Alerte')->find($id);
-
+        $tabParam = $entity->getReference();
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Alerte entity.');
         }
-
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('CertIncidentBundle:Alerte:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
@@ -169,6 +161,11 @@ class AlerteController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('CertIncidentBundle:Alerte')->find($id);
+
+        $tabParam = $entity->getReference();
+        //$params = $request->request->get('cert_incidentbundle_alerte');
+        $preferencArray = explode(';', $tabParam);
+        $entity->setReference($preferencArray);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Alerte entity.');

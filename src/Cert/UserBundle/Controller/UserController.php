@@ -26,7 +26,7 @@ class UserController extends Controller
 
         // pour recuperer la liste de tous les utilisateurs
         $entities = $userManager->findUsers();
-
+        
         return $this->render('CertUserBundle:User:index.html.twig', array(
             'entities' => $entities
         ));
@@ -48,6 +48,10 @@ class UserController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $encoder = $this->get('security.encoder_factory')->getEncoder($entity);
+            $mp_crypted = $encoder->encodePassword($entity->getPassword(), $entity->getSalt());
+            $entity->setPassword($mp_crypted);
+
             $em->persist($entity);
             $em->flush();
 
@@ -170,16 +174,14 @@ class UserController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
-        $em = $this->getDoctrine()->getManager();
-
+        $em     = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('CertUserBundle:User')->find($id);
-
         if (!$entity) {
             throw $this->createNotFoundException('Utilisateur inexistant.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $editForm   = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
@@ -206,15 +208,12 @@ class UserController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('CertUserBundle:User')->find($id);
-
             if (!$entity) {
                 throw $this->createNotFoundException('utilisateur inexistant');
             }
-
             $em->remove($entity);
             $em->flush();
         }
-
         return $this->redirect($this->generateUrl('admin_users'));
     }
 

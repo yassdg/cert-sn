@@ -14,14 +14,16 @@
             <tbody>
             {% for entity in entities %}
                 <tr>
-                    <td><a href="{{ path('admin_alerte_show', { 'id': entity.id }) }}">{{ entity.incident.id }}</a></td>
+                    <td><a href="{{ path('expert_incident_show', { 'id': entity.id }) }}">{{ entity.incident.id     }}</a>
+                    </td>
                     <td>{{ entity.incident.type }}</td>
                     <td>
-                    {% if entity.incident.traitee == true %}    
-                        Incident déja traitée
-                    {% else %}    
-                        {{ form(entity.form) }}
-                    {% endif %}       
+                        {% if entity.incident.traitee == true %}    
+                            Incident traité <a href="{{ path('expert_incident_show', { 'id': entity.id }) }}" class="btn btn-sm btn-info"/><i class="fa fa-1x fa-eye"></i>voir</a>      
+                        {% else %}    
+                            {{ form(entity.form) }}
+                        {% endif %} 
+                        
                     </td>
                 </tr>
             {% endfor %}
@@ -29,8 +31,8 @@
         </table>
 
         <ul>
-            <a href="{{ path('admin_alerte_new') }}" class="btn btn-sm btn-default">
-                <i class="fa fa-2x fa-edit"></i>Cr&eacute;er nouvelle alerte
+            <a href="{{ path('expert_incident_new') }}" class="btn btn-sm btn-default">
+                <i class="fa fa-2x fa-edit"></i>Cr&eacute;er nouvel incident
             </a>
         </ul>
     </div>

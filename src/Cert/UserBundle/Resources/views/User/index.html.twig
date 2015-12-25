@@ -3,7 +3,7 @@
 {% block body -%}
     <center><h3>Liste des comptes utilisateur</h3></center>
     <hr>
-    <div class="table-responsive">
+    <div >
         <table class="table table-bordered table-striped" id="utilisateurs">
             <thead>
                 <tr>
@@ -34,3 +34,12 @@
     </div>
     
     {% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#utilisateurs').DataTable();
+        } );
+    </script>
+{% endblock %}

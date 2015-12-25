@@ -261,7 +261,7 @@ class Alerte
      * @param \Cert\IncidentBundle\Entity\User $user
      * @return Alerte
      */
-    public function setUser(\Cert\IncidentBundle\Entity\User $user = null)
+    public function setUser(\Cert\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
 

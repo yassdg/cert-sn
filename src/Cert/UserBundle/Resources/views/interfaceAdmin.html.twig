@@ -114,7 +114,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="{{ path('fos_user_security_login') }}"><i class="fa fa-fw fa-power-off"></i> D&eacute;connexion</a>
+                            <a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-fw fa-power-off"></i> D&eacute;connexion</a>
                         </li>
                     </ul>
                 </li>
@@ -124,16 +124,29 @@
 
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav" id="menuAdmin">
-                    <li class="active">
-                        <a href="{{ path('admin_users') }}"><i class="fa fa-fw fa-dashboard"></i> Gestion-Comptes</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin_users') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Gestion-Annonces</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin_users') }}" type="hidden"><i class="fa fa-fw fa-dashboard"></i> Gestion-Alertes</a>
-                    </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li>
+                            <a href="{{ path('admin_users') }}"><i class="fa fa-fw fa-user"></i> Gestion-Comptes</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_users') }}"><i class="fa fa-fw fa-dashboard"></i> Gestion-Roles</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('admin_annonce') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Gestion-Annonces</a>
+                        </li>
+                         <li>
+                            <a href="{{ url('admin_alerte') }}" type="hidden"><i class="fa fa-fw fa-dashboard"></i> Gestion Alertes</a>
+                        </li>
+                    {% endif %}
 
+                    {% if is_granted('ROLE_EXPERTINFO') %}
+                        <li>
+                            <a href="{{ path('admin_users') }}" type="hidden"><i class="fa fa-fw fa-dashboard"></i> Traitement Incidents</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('admin_alerte') }}" type="hidden"><i class="fa fa-fw fa-dashboard"></i> Gestion Vulnerabilite</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

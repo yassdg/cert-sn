@@ -18,14 +18,54 @@ class AlerteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titre','textarea')
-            ->add('systemeAffecte','textarea')
-            ->add('vuDensemble','textarea')
-            ->add('description','textarea')
-            ->add('impact','textarea')
-            ->add('solution','textarea')
-            ->add('reference','textarea')
-            ->add('revisions','textarea')
+            ->add('titre',null, array(
+                    'attr'=> array(
+                        'class'=> 'form-control'
+                    )
+                )
+            )
+            ->add('systemeAffecte',null, array(
+                    'attr'=> array(
+                        'class'=> 'form-control'
+                    )
+                )
+            )
+            ->add('vuDensemble',null, array(
+                    'attr'=> array(
+                        'class'=> 'form-control'
+                    )
+                )
+            )
+            ->add('description',null, array(
+                    'attr'=> array(
+                        'class'=> 'form-control'
+                    )
+                )
+            )
+            ->add('impact',null, array(
+                    'attr'=> array(
+                        'class'=> 'form-control'
+                    )
+                )
+            )
+            ->add('solution',null, array(
+                    'attr'=> array(
+                        'class'=> 'form-control'
+                    )
+                )
+            )
+            ->add('reference',"textarea", array(
+                    'attr'=> array(
+                        'class'=> 'form-control'
+                    )
+                )
+            )
+            ->add('revisions',"textarea", array(
+                    'attr'=> array(
+                        'class'=> 'form-control'
+                    )
+                )
+            )
         ;
     }
     
