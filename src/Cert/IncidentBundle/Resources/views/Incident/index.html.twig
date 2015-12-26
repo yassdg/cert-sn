@@ -8,23 +8,29 @@
                 <tr>
                     <th>Id</th>
                     <th>Titre</th>
+                    <th>traité par</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
             {% for entity in entities %}
                 <tr>
-                    <td><a href="{{ path('expert_incident_show', { 'id': entity.id }) }}">{{ entity.incident.id     }}</a>
+                    <td><a href="{{ path('expert_incident_show', { 'id': entity.id }) }}">{{ entity.id     }}</a>
                     </td>
-                    <td>{{ entity.incident.type }}</td>
-                    <td>
-                        {% if entity.incident.traitee == true %}    
-                            Incident traité <a href="{{ path('expert_incident_show', { 'id': entity.id }) }}" class="btn btn-sm btn-info"/><i class="fa fa-1x fa-eye"></i>voir</a>      
-                        {% else %}    
-                            {{ form(entity.form) }}
-                        {% endif %} 
-                        
-                    </td>
+                    <td>{{ entity.type }}</td>
+                    {% if entity.traitee == true %}    
+                        <td>{{ entity.user.username }}</td>
+                        <td>
+                                Incident traité <a href="{{ path('expert_incident_show', { 'id': entity.id }) }}" class="btn btn-sm btn-info"/><i class="fa fa-1x fa-eye"></i> voir</a>      
+                        </td>
+                    {% else %}    
+                        <td>--</td>
+                        <td>
+                            <a href="{{ path('expert_incident_edit', {'id': entity.id}) }}" class="btn btn-sm btn-default">
+                                <i class="fa fa-1g fa-edit"></i> Traiter 
+                            </a>
+                        </td>
+                    {% endif %} 
                 </tr>
             {% endfor %}
             </tbody>
@@ -32,7 +38,7 @@
 
         <ul>
             <a href="{{ path('expert_incident_new') }}" class="btn btn-sm btn-default">
-                <i class="fa fa-2x fa-edit"></i>Cr&eacute;er nouvel incident
+                <i class="fa fa-2x fa-edit btn btn-primary btn-flat "></i>Cr&eacute;er nouvel incident
             </a>
         </ul>
     </div>

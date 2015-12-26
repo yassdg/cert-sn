@@ -26,6 +26,10 @@ Cert\IncidentBundle\Entity\Vulnerabilite:
             type: datetimetz
         dateModification:
             type: datetimetz
+        image:
+            type:     string
+            length:   255
+            nullable: true
     manyToOne:
         user:
             targetEntity: \Cert\UserBundle\Entity\User

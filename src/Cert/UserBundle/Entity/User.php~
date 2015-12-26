@@ -57,6 +57,10 @@ class User extends BaseUser
     */
     protected $annonces;
 
+    public function __construct(){
+        parent::__construct();
+        $this->setEnabled(true);
+    }
 
     /**
      * Set nom

@@ -10,8 +10,7 @@
 
 <link  href="{{ asset('bundles/certincident/img/glyphicons-halflings.png') }}" rel="stylesheet">
 
-    <!-- Carousel
-    ================================================== -->
+    <!-- Carousel ================================================== -->
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -21,11 +20,11 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img class="first-slide" src="{{ asset('bundles/certincident/img/slide1.png') }}" alt="First slide">
+          <img class="first-slide" src="{{ asset('bundles/certincident/img/logo1.png') }}" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>Conférence sur la cybercriminalité.</h1>
-              <p id="slide1" style="color: blue;">Note: If you're viewing this page via a <code>file://</code> URL, the Face à la montée de la cybercriminalité et de la cybersécurité, la Police nationale essaie de trouver les moyens technologiques adéquats pour contrer ces armes des délinquants 3.0. En attendant, elle investit dans la coopération internationale pour essayer de minimiser les menaces.</p>
+              <p id="slide1" class="resume-evenement">Note: If you're viewing this page via a <code>file://</code> URL, the Face à la montée de la cybercriminalité et de la cybersécurité, la Police nationale essaie de trouver les moyens technologiques adéquats pour contrer ces armes des délinquants 3.0. En attendant, elle investit dans la coopération internationale pour essayer de minimiser les menaces.</p>
               <p><a class="btn btn-lg btn-primary" href="" role="button">Sign up today</a></p>
             </div>
           </div>
@@ -35,7 +34,7 @@
           <div class="container">
             <div class="carousel-caption">
               <h1>Another example headline.</h1>
-              <p id="slide2" style="color: blue;">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p id="slide2" class="resume-evenement">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
               <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
             </div>
           </div>
@@ -45,7 +44,7 @@
           <div class="container">
             <div class="carousel-caption">
               <h1>One more for good measure.</h1>
-              <p id="slide3" style="color: blue;">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p id="slide3" class="resume-evenement">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
               <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
             </div>
           </div>
@@ -67,8 +66,7 @@
             </div> 
         </div>. -->
     <div id="wrapper" class="row" >
-                <span>  <a id="signalerIncident" href="{{ path('cert_incident_declarer') }}" class="btn btn-primary">Signaler un Incident</a> </span>
-           
+        <span>  <a id="signalerIncident" href="{{ path('cert_incident_declarer') }}" class="btn btn-primary">Signaler un Incident</a> </span>
     </div>
     <div id="contenuPage">
         <div class="row">
@@ -82,15 +80,20 @@
                     <ul>
                         {% for vul in liste_vulnerabilite  %}
                             {% if loop.index <5 %}
-                            <li class="glyphicon glyphicon-chevron-right">
+                            <li class=" info-item glyphicon glyphicon-chevron-right">
+                                <img src="{{ asset(vul.image) }}" width="160" height="160">
                                 {{ vul.titre }}
-                                <a href="{{ path('cert_incident_voirVulnerabilite', { 'id': vul.id }) }}">Detail</a>
-                                <br/>
+                                <a class="detail-btn" href="{{ path('cert_incident_voirVulnerabilite', { 'id': vul.id }) }}">Detail</a>
                             </li>
                             {% endif %}
                         {% endfor %}
                     </ul>
-                    <a class="btn btn-primary" id="boutonVul" href="{{ path('cert_incident_ListingVulnerabilite') }}">voir plus &raquo;</a>
+                </div>
+                <div class="panel-footer">
+                    <a class="btn pull-left btn-sm  btn-primary" 
+                        href="{{ path('cert_incident_ListingVulnerabilite') }}">
+                        voir plus &raquo;
+                    </a>
                 </div>
             </div>
         </div>
@@ -106,16 +109,18 @@
                     <ul>
                         {% for alerte in liste_alertes %}
                             {% if loop.index <6 %}
-                            <li class="glyphicon glyphicon-chevron-right">
+                            <li class=" info-item glyphicon glyphicon-chevron-right">
                                 {{ alerte.titre }}
-                                <a href="{{ path('cert_incident_voirAlerte', { 'id': alerte.id }) }}">Detail</a><br/>
+                                <a class="detail-btn" href="{{ path('cert_incident_voirAlerte', { 'id': alerte.id }) }}">Detail</a>
                             </li><br/>
                             {% endif %}
                           {% else %}
                             <li>Pas d'alerte pour le moment !!) </li>
                         {% endfor %}
                     </ul>
-                    <a class="btn btn-primary" id="boutonAlerte" href="{{ path('cert_incident_ListeAlerte') }}">voir plus &raquo;</a>
+                </div>
+                <div class="panel-footer">
+                    <a class="btn pull-left btn-sm  btn-primary" href="{{ path('cert_incident_ListeAlerte') }}">voir plus &raquo;</a>
                 </div> 
             </div> 
         </div><!-- /.col-sm-6 -->
@@ -191,8 +196,6 @@
                         <i class="fa fa-envelope fa-3x wow bounceIn"></i>
                         <p> dieng.yacine@ugb.edu.sn</p>
                     </div>
-                    
-                   
                 </div>
             </div>
     </section>
@@ -205,41 +208,31 @@
                     <div class="col-lg-4 col-lg-offset-2 text-center">
                         <i class="fa fa-phone fa-3x wow bounceIn"></i>
                         <p>  
-
                         <a href="#"><img class="second-slide" src="{{ asset('bundles/certincident/img/artp.png') }}" alt="Second slide"></a>
-
                       </p>
                     </div>
                     <div class="col-lg-4 col-lg-offset-2 text-center">
                         <i class="fa fa-phone fa-3x wow bounceIn"></i>
                         <p>  
-
                         <a href="#"><img class="second-slide" src="{{ asset('bundles/certincident/img/artp.png') }}" alt="Second slide"></a>
-
                       </p>
                     </div>
                     <div class="col-lg-4 col-lg-offset-2 text-center">
                         <i class="fa fa-phone fa-3x wow bounceIn"></i>
                         <p>  
-
                         <a href="#"><img class="second-slide" src="{{ asset('bundles/certincident/img/artp.png') }}" alt="Second slide"></a>
-
                       </p>
                     </div>
                      <div class="col-lg-4 col-lg-offset-2 text-center">
                         <i class="fa fa-phone fa-3x wow bounceIn"></i>
                         <p>  
-
                         <a href="#"><img class="second-slide" src="{{ asset('bundles/certincident/img/artp.png') }}" alt="Second slide"></a>
-
-                      </p>
+                        </p>
                     </div>
                     <div class="col-lg-4 col-lg-offset-2 text-center">
                         <i class="fa fa-phone fa-3x wow bounceIn"></i>
                         <p>  
-
                         <a href="#"><img class="second-slide" src="{{ asset('bundles/certincident/img/artp.png') }}" alt="Second slide"></a>
-
                       </p>
                     </div>       
                 </div>

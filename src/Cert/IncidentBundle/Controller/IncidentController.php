@@ -25,7 +25,7 @@ class IncidentController extends Controller
 
         $entities = $em->getRepository('CertIncidentBundle:Incident')->findAll();
 
-        $entityForms = array();
+        /*$entityForms = array();
         foreach ($entities as $incident) {
             $editForm = $this->createEditForm($incident);
             $result = array(
@@ -34,9 +34,9 @@ class IncidentController extends Controller
                 "incident"=> $incident
             );
             $entityForms[] = $result;
-        }
+        }*/
         return $this->render('CertIncidentBundle:Incident:index.html.twig', array(
-            'entities' => $entityForms,
+            'entities' => $entities,
         ));
     }
     /**
@@ -182,15 +182,12 @@ class IncidentController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('CertIncidentBundle:Incident')->find($id);
-
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Incident entity.');
             }
-
             $em->remove($entity);
             $em->flush();
         }
-
         return $this->redirect($this->generateUrl('expert_incident'));
     }
 
@@ -206,7 +203,7 @@ class IncidentController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('expert_incident_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Supprimer'))
             ->getForm()
         ;
     }

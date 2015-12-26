@@ -44,6 +44,8 @@ class VulnerabiliteController extends Controller
             $params = $request->request->get('cert_incidentbundle_vulnerabilite');
             $preferencArray = explode(';', $params['reference']);
             $entity->setReference($preferencArray);
+
+            $entity->upload();
             $em->persist($entity);
             $em->flush();
 

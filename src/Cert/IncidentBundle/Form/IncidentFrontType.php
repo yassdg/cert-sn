@@ -33,8 +33,9 @@ class IncidentFrontType extends AbstractType
                     'DoS'=>'DoS', 'DDoS'=>'DDoS', 'Sabotage'=>'Sabotage', 'Droit dauteur'=>'Droit dauteur',
                      'Mascarade'=>'Macarade', 'Acces non autorisee de linformation'=>'Acces non autorisee de linformation'),
                     'multiple' =>false,
-            ))
+            )   )
             ->add('visiteur', new VisiteurType()) // creation de l'association entre incident et visiteur 
+            
         ;
     }
     

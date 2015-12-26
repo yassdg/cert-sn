@@ -21,11 +21,11 @@
                 <td>{{ entity.datePub|date('d/m/Y') }}</td>
                 <td>
                 
-                        <a href="{{ path('admin_vulnerabilite_show', { 'id': entity.id }) }}"class="btn btn-sm btn-success">
-                <i class="fa fa-2x fa-eye"></i>voir</a>
+                    <a href="{{ path('admin_vulnerabilite_show', { 'id': entity.id }) }}"class="btn btn-sm btn-success">
+                <i class="fa fa-1x fa-eye"></i>voir</a>
                     
                         <a href="{{ path('admin_vulnerabilite_edit', { 'id': entity.id }) }}"class="btn btn-sm btn-info">
-                <i class="fa fa-2x fa-edit"></i>editer</a>
+                <i class="fa fa-1x fa-edit"></i>editer</a>
                    
                 </td>
             </tr>
@@ -35,8 +35,8 @@
 
     <ul>
         <a href="{{ path('admin_vulnerabilite_new') }}" class="btn btn-sm btn-info">
-                    <i class="fa fa-2x fa-new"></i>Cr&eacute;er Vulnerabilite
-                </a>
+            <i class="fa fa-2x fa-new"></i>Cr&eacute;er Vulnerabilite
+        </a>
     </ul>
     </div>
     {% endblock %}

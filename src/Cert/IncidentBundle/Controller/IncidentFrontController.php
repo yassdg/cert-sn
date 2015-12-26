@@ -29,11 +29,11 @@ class IncidentFrontController extends Controller
 
 		//recuperation de la liste des annonces de la BD
 		$liste_annonces = $em->getRepository('CertIncidentBundle:Annonce')->findAll();
-
+		$vulnerabilites = array_reverse($liste_vulnerabilite);
 
 		// retourner la liste a la page index.html.twig qui doit les afficher
 		return $this->render('CertIncidentBundle:IncidentFront:index.html.twig',array(
-			'liste_vulnerabilite' => $liste_vulnerabilite,
+			'liste_vulnerabilite' => $vulnerabilites,
 			'liste_alertes' => $liste_alertes,
 			'liste_annonces' => $liste_annonces));
 
@@ -65,13 +65,9 @@ class IncidentFrontController extends Controller
 			if ( $form->isValid() ) 
 			{
 				$em = $this->getDoctrine()->getManager();
-
-				//enregistrement en BDD, on peut aussi l'envoyer par email, ou autre chose
 				$em->persist($incident);
 				$em->persist($incident->getVisiteur());
 				$em->flush();
-
-				//par de redirection apres envoie formulaire
 				return $this->redirect( $this->generateUrl('cert_incident_accueil'));
 			}
 		}

@@ -1,10 +1,8 @@
 <?php
 
 namespace Cert\IncidentBundle\Controller;
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Cert\IncidentBundle\Entity\Alerte;
 use Cert\IncidentBundle\Form\AlerteType;
 
@@ -22,14 +20,11 @@ class AlerteController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $entities = $em->getRepository('CertIncidentBundle:Alerte')->findAll();
-
         return $this->render('CertIncidentBundle:Alerte:index.html.twig', array(
             'entities' => $entities,
         ));
     }
-    
     public function createAction(Request $request)
     {
         //l'utilisateur a les droit de creer un nouvel utilisateur
@@ -38,7 +33,6 @@ class AlerteController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
             $params = $request->request->get('cert_incidentbundle_alerte');
             $preferencArray = explode(';', $params['reference']);
             $entity->setReference($preferencArray);
@@ -55,7 +49,6 @@ class AlerteController extends Controller
             'form'   => $form->createView(),
         ));
     }
-
     /**
      * Creates a form to create a Alerte entity.
      *
@@ -74,7 +67,6 @@ class AlerteController extends Controller
 
         return $form;
     }
-
     /**
      * Displays a form to create a new Alerte entity.
      *
@@ -89,7 +81,6 @@ class AlerteController extends Controller
             'form'   => $form->createView(),
         ));
     }
-
     /**
      * Finds and displays a Alerte entity.
      *
@@ -102,7 +93,6 @@ class AlerteController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('alerte inexistante.');
         }
-
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('CertIncidentBundle:Alerte:show.html.twig', array(
@@ -147,9 +137,7 @@ class AlerteController extends Controller
             'action' => $this->generateUrl('admin_alerte_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
-
         $form->add('submit', 'submit', array('label' => 'Update'));
-
         return $form;
     }
     /**
@@ -159,11 +147,8 @@ class AlerteController extends Controller
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('CertIncidentBundle:Alerte')->find($id);
-
         $tabParam = $entity->getReference();
-        //$params = $request->request->get('cert_incidentbundle_alerte');
         $preferencArray = explode(';', $tabParam);
         $entity->setReference($preferencArray);
 
@@ -180,7 +165,6 @@ class AlerteController extends Controller
 
             return $this->redirect($this->generateUrl('admin_alerte_edit', array('id' => $id)));
         }
-
         return $this->render('CertIncidentBundle:Alerte:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
@@ -210,7 +194,6 @@ class AlerteController extends Controller
 
         return $this->redirect($this->generateUrl('admin_alerte'));
     }
-
     /**
      * Creates a form to delete a Alerte entity by id.
      *

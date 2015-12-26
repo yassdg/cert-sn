@@ -23,6 +23,7 @@ class VulnerabiliteType extends AbstractType
             ->add('source','textarea')
             ->add('datepub')
             ->add('dateModification')
+            ->add('fichier')
         ;
     }
     

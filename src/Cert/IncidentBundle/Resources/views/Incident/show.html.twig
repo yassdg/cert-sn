@@ -3,7 +3,7 @@
 {% block body -%}
     <h1>Incident</h1>
 
-    <table class="record_properties">
+    <table class="table table-bordered table-hover">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -32,17 +32,15 @@
         </tbody>
     </table>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('expert_incident') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('expert_incident_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+   
+            <a href="{{ path('expert_incident') }}">
+                Back to the list
+            </a>
+       
+            <a href="{{ path('expert_incident_edit', { 'id': entity.id }) }}">
+                Edit
+            </a>
+        
+        {{ form(delete_form) }}
+    </ul>
 {% endblock %}

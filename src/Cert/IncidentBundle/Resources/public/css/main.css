@@ -1,3 +1,7 @@
+html,body, #page-wrapper, #wrapper{
+    height: 100%;
+}
+
 .container-fluid {
     margin-right: 135px;
     margin-left: 138px;
@@ -69,17 +73,20 @@ font-size: 51px;
 }
 #vulnerabilitePlace .panel-danger {
     border-color: #EBCCD1;
-    height: 247px;
+ 
+}
+#vulnerabilitePlace .panel-danger .panel-body {
+   height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+#alertePlace .panel-success .panel-body {
+   height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
-#boutonVul {
-    margin-left: 80%;
-    margin-top: 1%;
-}
-.panel-success {
-    border-color: #D6E9C6;
-    height: 247px;
-}
+
 #boutonAlerte {
     margin-left: 74%;
     margin-top: 4%;
@@ -135,4 +142,58 @@ float: left;
 #signalerIncident{
      margin-left: 80%;
     margin-top: 1%;
+}   
+.display-none{
+    display: none;
+}
+ul.actions{
+    padding-left: 0;
+    margin-top: 15px;
+}
+ul.actions li {
+    list-style-type:    none;
+    display:            inline-block;
+    margin-right:       5px;
+}
+.btn-flat{
+    border: none;
+    border-radius: 0;
+}
+div#myCarousel {
+    width: 100%;
+    margin: auto;
+    border: none;
+    box-shadow: 0px 7px 15px #E8E8E8;
+    margin-bottom: 20px;
+}
+.carousel-control.left,
+.carousel-control.right{
+    background: none !important;
+}
+.btn{
+        border-radius: 5px !important;
+}
+.resume-evenement{
+    color: #000;
+}
+a.detail-btn {
+    font-weight: bold;
+    display: block;
+    background: #f05f40;
+    color: #fff;
+    width: 60px;
+    text-align: center;
+}
+li.info-item {
+    margin-bottom: 16px;
+    line-height: normal;
+    text-align: left;
+}
+.panel-footer{
+    position:   relative;
+    height:     45px;
+}
+.panel-footer a.btn{
+    position:   absolute;
+    right:      10px;
 }

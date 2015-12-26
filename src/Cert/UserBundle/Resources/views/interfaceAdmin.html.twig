@@ -141,10 +141,10 @@
 
                     {% if is_granted('ROLE_EXPERTINFO') %}
                         <li>
-                            <a href="{{ path('admin_users') }}" type="hidden"><i class="fa fa-fw fa-dashboard"></i> Traitement Incidents</a>
+                            <a href="{{ path('expert_incident') }}" type="hidden"><i class="fa fa-fw fa-dashboard"></i> Traitement Incidents</a>
                         </li>
                         <li>
-                            <a href="{{ url('admin_alerte') }}" type="hidden"><i class="fa fa-fw fa-dashboard"></i> Gestion Vulnerabilite</a>
+                            <a href="{{ path('admin_vulnerabilite') }}" type="hidden"><i class="fa fa-fw fa-dashboard"></i> Gestion Vulnerabilite</a>
                         </li>
                     {% endif %}
                 </ul>
