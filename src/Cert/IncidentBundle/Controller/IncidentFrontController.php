@@ -27,8 +27,10 @@ class IncidentFrontController extends Controller
 		// on recupere la liste des vulnerabilites enregistres
 		$liste_vulnerabilite = $em->getRepository('CertIncidentBundle:Vulnerabilite')->findAll();
 
+
 		//recuperation de la liste des annonces de la BD
 		$liste_annonces = $em->getRepository('CertIncidentBundle:Annonce')->findAll();
+		$liste_annonces = array_reverse($liste_annonces);
 		$vulnerabilites = array_reverse($liste_vulnerabilite);
 
 		// retourner la liste a la page index.html.twig qui doit les afficher

@@ -41,6 +41,12 @@ class AnnonceController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $uploader   = $this->get('uploader_image');
+            $files      = $request->files->get('cert_incidentbundle_annonce');
+            $imagePath  = $uploader->upload($files['fichier']);
+            $entity->setImage($imagePath);
+
             $em->persist($entity);
             $em->flush();
 

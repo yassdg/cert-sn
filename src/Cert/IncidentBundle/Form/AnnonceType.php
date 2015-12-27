@@ -16,10 +16,10 @@ class AnnonceType extends AbstractType
     {
         $builder
             ->add('titre')
-            ->add('image')
             ->add('source')
             ->add('description')
             ->add('dateAnnonce')
+            ->add('fichier')
         ;
     }
     

@@ -1,0 +1,15 @@
+Cert\IncidentBundle\Entity\ServiceImage:
+    type: entity
+    table: null
+    repositoryClass: Cert\IncidentBundle\Entity\ServiceImageRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        fichier:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

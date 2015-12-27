@@ -44,12 +44,17 @@ class VulnerabiliteController extends Controller
             $params = $request->request->get('cert_incidentbundle_vulnerabilite');
             $preferencArray = explode(';', $params['reference']);
             $entity->setReference($preferencArray);
-
-            $entity->upload();
+            $uploader   = $this->get('uploader_image');
+            $files      = $request->files->get('cert_incidentbundle_vulnerabilite');
+            $imagePath  = $uploader->upload($files['fichier']);
+            $entity->setImage($imagePath);
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_vulnerabilite_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_vulnerabilite_show',array(
+                'id' => $entity->getId()
+                )
+            ));
         }
 
         return $this->render('CertIncidentBundle:Vulnerabilite:new.html.twig', array(
@@ -175,6 +180,10 @@ class VulnerabiliteController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            $uploader   = $this->get('uploader_image');
+            $files      = $request->files->get('cert_incidentbundle_vulnerabilite');
+            $imagePath  = $uploader->upload($files['fichier']);
+            $entity->setImage($imagePath);
             $em->flush();
 
             return $this->redirect($this->generateUrl('admin_vulnerabilite_edit', array('id' => $id)));

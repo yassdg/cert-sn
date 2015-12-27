@@ -3,6 +3,8 @@
 namespace Cert\IncidentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Annonce
@@ -43,9 +45,33 @@ class Annonce
      * @var \Cert\UserBundle\Entity\User
      */
     private $user;
+     /**
+     * @Assert\File(maxSize="6000000")
+     */
+    private $fichier;
 
     public function __construct() {
         $this->dateAnnonce = new \DateTime();
+    }
+
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFichier(UploadedFile $fichier = null)
+    {
+        $this->fichier = $fichier;
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFichier()
+    {
+        return $this->fichier;
     }
 
     /**

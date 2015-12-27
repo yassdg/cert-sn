@@ -8,8 +8,6 @@
 
 {% block certincident_body %}
 
-<link  href="{{ asset('bundles/certincident/img/glyphicons-halflings.png') }}" rel="stylesheet">
-
     <!-- Carousel ================================================== -->
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
@@ -60,185 +58,100 @@
       </a>
     </div><!-- /.carousel -->
 
-<!--Bienvenue sur le site web CERT-SN qui opte a offrir un Internet plus suur et plus resistant pour tous les senegalais en repondant a des incidents majeurs, analyse des menaces et l'echange d'information en matiere de cybersecurite crittique avec des partenaires de confiance du monde entier <div  id="cert_image" class="col-lg-12">
-            <div id="">
-                <span>  <a href="{{ path('cert_incident_declarer') }}" class="btn btn-primary">Signaler un Incident</a> </span>
-            </div> 
-        </div>. -->
-    <div id="wrapper" class="row" >
-        <span>  <a id="signalerIncident" href="{{ path('cert_incident_declarer') }}" class="btn btn-primary">Signaler un Incident</a> </span>
-    </div>
     <div id="contenuPage">
-        <div class="row">
-                <div class="col-lg-6 col-md-6" id="vulnerabilitePlace">
-            <div class="panel panel-danger">
-                <div class="panel-heading">
-                    <h3 class="panel-title glyphicon glyphicon-alert">Vuln&eacute;rabilit&eacute;s Rencentes</h3>
-                </div>
-                <div class="panel-body">
-                    {# affichage des vulnerabilite se trouvant dans la base de donnees #}
-                    <ul>
-                        {% for vul in liste_vulnerabilite  %}
-                            {% if loop.index <5 %}
-                            <li class=" info-item glyphicon glyphicon-chevron-right">
-                                <img src="{{ asset(vul.image) }}" width="160" height="160">
-                                {{ vul.titre }}
-                                <a class="detail-btn" href="{{ path('cert_incident_voirVulnerabilite', { 'id': vul.id }) }}">Detail</a>
-                            </li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="panel-footer">
-                    <a class="btn pull-left btn-sm  btn-primary" 
-                        href="{{ path('cert_incident_ListingVulnerabilite') }}">
-                        voir plus &raquo;
-                    </a>
-                </div>
+        <div class="col-lg-12 col-md-12">
+
+        </div>      
+        <div class="col-lg-9 col-md-9" id="vulnerabilitePlace">
+            {# affichage des vulnerabilite se trouvant dans la base de donnees #}
+            <h2 id="vulnerabilite_title"> 
+                <i class="glyphicon glyphicon-alert"></i>
+                Vulnérabilités Rencentes
+            </h2>
+            {% for vul in liste_vulnerabilite  %}
+                {% if loop.index <=9 %}
+                    <div class="col-lg-4 col-md-4 vulnerabilite_container ">
+                        <div class="vulnerabilite_content">     
+                            {% set img_url = (vul.image != null) ? vul.image : "uploads/pictures/81777_1.jpg" %}
+                            <div class="cover">
+                                <img src="{{ asset(img_url) }}" />
+                            </div>
+                            {% set text =   vul.titre|length > 45 ?  vul.titre|slice(0, 45) ~ '...' :  vul.titre  %}
+                            <a  
+                                href="{{ path('cert_incident_voirVulnerabilite', { 'id': vul.id }) }}" class="detail">{{ text }}
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <div class="col-md-12">
+                <a class="btn pull-left btn-sm  btn-primary" 
+                    href="{{ path('cert_incident_ListingVulnerabilite') }}">
+                    voir plus &raquo;
+                </a>
             </div>
         </div>
-        <!-- /.col-sm-6 -->
+        <div class="col-lg-3 col-md-3" id="alerte">
+            <h2>Alertes de sécurité</h2>
+            <ul>
+                {% for alerte in liste_alertes %}
+                    {% if loop.index <9 %}
+                    <li class=" info-item glyphicon glyphicon-chevron-right">
+                        {{ alerte.titre }}
+                        <a class="detail-btn" href="{{ path('cert_incident_voirAlerte', { 'id': alerte.id }) }}">Detail</a>
+                    </li><br/>
+                    {% endif %}
+                  {% else %}
+                    <li>Pas d'alerte pour le moment !!) </li>
+                {% endfor %}
+            </ul>
+        </div>
 
-        <div class="col-lg-6 col-md-6" id="alertePlace">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h4 class="panel-title glyphicon glyphicon-info-sign">Alertes de s&eacute;curit&eacute; </h4>
-                </div>
-                <div class="panel-body">
-                    {# affichage des aleres se trouvant dans la base de donnees #}
-                    <ul>
-                        {% for alerte in liste_alertes %}
-                            {% if loop.index <6 %}
-                            <li class=" info-item glyphicon glyphicon-chevron-right">
-                                {{ alerte.titre }}
-                                <a class="detail-btn" href="{{ path('cert_incident_voirAlerte', { 'id': alerte.id }) }}">Detail</a>
-                            </li><br/>
-                            {% endif %}
-                          {% else %}
-                            <li>Pas d'alerte pour le moment !!) </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="panel-footer">
-                    <a class="btn pull-left btn-sm  btn-primary" href="{{ path('cert_incident_ListeAlerte') }}">voir plus &raquo;</a>
-                </div> 
-            </div> 
-        </div><!-- /.col-sm-6 -->
-        <div class="col-lg-6 col-md-6" id="annoncePlace">
-            <div class="panel panel-primary">
-                <div class="panel-heading ">
-                    <h4 class="panel-title glyphicon glyphicon-globe">Annonces </h4>
-                </div>
-                <div class="panel-body">
-                    {# affichage des aleres se trouvant dans la base de donnees #}
-                    <p>Quatres produits dans le syst&eacute;me nationale de sensibilisation sur la cybers&eacute;curite: elle  offre une vari&eacute;t&eacute;    
-                        d'informations pour les utilisateurs possedant une expertise technique vari&eacute;e. Ceux ayant  des interets plus techniques peuvent lire les alertes, l'activit&eacute; en cours , ou les bulletins. les utilsateurs a la recherche de plusieurs pi&eacute;ces d'interet g&eacute;n&eacute;ral peuvent lire les conseils.
-                    </p>
-                     {# affichage des aleres se trouvant dans la base de donnees #}
-                    <ul>
-                        {% for annonce in liste_annonces %}
-                            <li class="glyphicon glyphicon-chevron-right">
-                                {{ annonce.titre }}
-                                <a href="{{ path('cert_incident_voirAnnonce', { 'id': annonce.id }) }}">Detail</a><br/>
-                            </li>
-                          {% else %}
-                            <li>Pas d'annonces pour le moment !!) </li>
-                        {% endfor %}
-                    </ul>
-                        <a class="btn btn-primary" href="{{ path('cert_incident_ListeAnnonce') }}">liste complet &raquo;</a>
-                </div> 
-            </div> 
-        </div><!-- /.col-sm-6 -->
-        <hr>
+        <div class="col-lg-9 col-md-9" id="vulnerabilitePlace">
+        
+            <h2 id="vulnerabilite_title"> 
+                <i class="glyphicon glyphicon-alert"></i>
+                Annonces Récentes
+            </h2>
+            {% for annonce in liste_annonces  %}
+                {% if loop.index <=9 %}
+                    <div class="col-lg-4 col-md-4 vulnerabilite_container ">
+                        <div class="vulnerabilite_content">     
+                            {% set img_url = (annonce.image != null) ? annonce.image : "uploads/pictures/81777_1.jpg" %}
+                            <div class="cover">
+                                <img src="{{ asset(img_url) }}" />
+                            </div>
+                            {% set text =   annonce.titre|length > 45 ?  annonce.titre|slice(0, 45) ~ '...' :  annonce.titre  %}
+                            <a  
+                                href="{{ path('cert_incident_voirVulnerabilite', { 'id': annonce.id }) }}" class="detail">{{ text }}
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <div class="col-md-12">
+                <a class="btn pull-left btn-sm  btn-primary" 
+                    href="{{ path('cert_incident_ListingVulnerabilite') }}">
+                    voir plus &raquo;
+                </a>
+            </div>
+        </div>
 
-        <div class="col-lg-6 col-md-6" id="documentPlace">
-            <div class="panel panel-primary">
-                <div class="panel-heading ">
-                    <h4 class="panel-title glyphicon glyphicon-globe">Document Techniques </h4>
-                </div>
-                <div class="panel-body">
-                    {# affichage des aleres se trouvant dans la base de donnees #}
-                   <p>Des articles de fond qui fournissent des conseils et de synthétiser une variété de sujets en matière de sécurité Internet.
-                   Des résumés hebdomadaires des nouvelles vulnérabilités ainsi que des informations de patch lorsque disponibles.
-                   Conseils et meilleures pratiques sur les questions de sécurité communes pour le grand public.
-                    </p>
-                     {# affichage des aleres se trouvant dans la base de donnees #}
-                    <ul>
-                        {% for annonce in liste_annonces %}
-                            <li class="glyphicon glyphicon-chevron-right">
-                                {{ annonce.titre }}
-                                <a href="{{ path('cert_incident_voirAnnonce', { 'id': annonce.id }) }}">Detail</a><br/>
-                            </li>
-                          {% else %}
-                            <li>Pas d'annonces pour le moment !!) </li>
-                        {% endfor %}
-                    </ul>
-                        <a class="btn btn-primary" href="{{ path('cert_incident_ListeAnnonce') }}">liste complet &raquo;</a>
-                </div> 
-            </div> 
-        </div><!-- /.col-sm-6 -->
-    </div>
-    <section id="contact">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2 text-center">
-                        <h2 class="section-heading">Nous contacter</h2>
-                    </div>
-                    <div class="col-lg-4 col-lg-offset-2 text-center">
-                        <i class="fa fa-phone fa-3x wow bounceIn"></i>
-                        <p>77 278 55 70</p>
-                    </div>
-                     <div class="col-lg-4 col-lg-offset-2 text-center">
-                        <i class=" wow bounceIn"></i>
-                        <p>| </p>
-                    </div>
-                     <div class="col-lg-4 col-lg-offset-2 text-center">
-                        <i class="fa fa-envelope fa-3x wow bounceIn"></i>
-                        <p> dieng.yacine@ugb.edu.sn</p>
-                    </div>
-                </div>
-            </div>
-    </section>
-     <section id="contact">
-            <div class="container">
-                <div class="row">
-                   <div class="col-lg-8 col-lg-offset-2 text-center">
-                        <h2 class="section-heading">Nos partenaire</h2>
-                    </div>
-                    <div class="col-lg-4 col-lg-offset-2 text-center">
-                        <i class="fa fa-phone fa-3x wow bounceIn"></i>
-                        <p>  
-                        <a href="#"><img class="second-slide" src="{{ asset('bundles/certincident/img/artp.png') }}" alt="Second slide"></a>
-                      </p>
-                    </div>
-                    <div class="col-lg-4 col-lg-offset-2 text-center">
-                        <i class="fa fa-phone fa-3x wow bounceIn"></i>
-                        <p>  
-                        <a href="#"><img class="second-slide" src="{{ asset('bundles/certincident/img/artp.png') }}" alt="Second slide"></a>
-                      </p>
-                    </div>
-                    <div class="col-lg-4 col-lg-offset-2 text-center">
-                        <i class="fa fa-phone fa-3x wow bounceIn"></i>
-                        <p>  
-                        <a href="#"><img class="second-slide" src="{{ asset('bundles/certincident/img/artp.png') }}" alt="Second slide"></a>
-                      </p>
-                    </div>
-                     <div class="col-lg-4 col-lg-offset-2 text-center">
-                        <i class="fa fa-phone fa-3x wow bounceIn"></i>
-                        <p>  
-                        <a href="#"><img class="second-slide" src="{{ asset('bundles/certincident/img/artp.png') }}" alt="Second slide"></a>
-                        </p>
-                    </div>
-                    <div class="col-lg-4 col-lg-offset-2 text-center">
-                        <i class="fa fa-phone fa-3x wow bounceIn"></i>
-                        <p>  
-                        <a href="#"><img class="second-slide" src="{{ asset('bundles/certincident/img/artp.png') }}" alt="Second slide"></a>
-                      </p>
-                    </div>       
-                </div>
-            </div>
-    </section>
-     
+        <div class="col-lg-3 col-md-3" id="alerte">
+            <h2>Docs Techniques</h2>
+            <ul>
+                {% for alerte in liste_alertes %}
+                    {% if loop.index <9 %}
+                    <li class=" info-item glyphicon glyphicon-chevron-right">
+                        {{ alerte.titre }}
+                        <a class="detail-btn" href="{{ path('cert_incident_voirAlerte', { 'id': alerte.id }) }}">Detail</a>
+                    </li><br/>
+                    {% endif %}
+                  {% else %}
+                    <li>Pas d'alerte pour le moment !!) </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 <!--/contenu principal -->
 

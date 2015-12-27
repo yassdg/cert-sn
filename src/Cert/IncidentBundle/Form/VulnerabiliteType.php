@@ -5,6 +5,7 @@ namespace Cert\IncidentBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Cert\IncidentBundle\Form\DataTransformer\ArrayToTextTransformer;
 
 class VulnerabiliteType extends AbstractType
 {
@@ -25,6 +26,9 @@ class VulnerabiliteType extends AbstractType
             ->add('dateModification')
             ->add('fichier')
         ;
+
+        $builder->get('reference')
+            ->addModelTransformer(new ArrayToTextTransformer());
     }
     
     /**
