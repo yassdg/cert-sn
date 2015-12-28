@@ -1,42 +1,43 @@
 {% extends '::layoutiAdmin.html.twig' %}
 
 {% block body -%}
-    <h1>Liste des Vulnerabilite</h1>
-
-    <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Date</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('admin_vulnerabilite_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.titre }}</td>
-                <td>{{ entity.datePub|date('d/m/Y') }}</td>
-                <td>
-                
-                    <a href="{{ path('admin_vulnerabilite_show', { 'id': entity.id }) }}"class="btn btn-sm btn-success">
-                <i class="fa fa-1x fa-eye"></i>voir</a>
-                    
-                        <a href="{{ path('admin_vulnerabilite_edit', { 'id': entity.id }) }}"class="btn btn-sm btn-info">
-                <i class="fa fa-1x fa-edit"></i>editer</a>
-                   
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
+    <center><h1>Liste des Vulnerabilités</h1></center>
     <ul>
-        <a href="{{ path('admin_vulnerabilite_new') }}" class="btn btn-sm btn-info">
-            <i class="fa fa-2x fa-new"></i>Cr&eacute;er Vulnerabilite
+        <a href="{{ path('admin_vulnerabilite_new') }}" class="btn btn-sm btn-success">
+            <i class="fa fa-1x fa-plus"></i> Ajouter une vulnérabilité
         </a>
     </ul>
+
+    <div class="col-lg-11">
+        <table class="table table-bordered table-hover">
+            <thead class="bg-primary">
+                <tr>
+                    <th>Id</th>
+                    <th>Titre</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                
+                {% for entity in entities %}
+                    <tr>
+                        <td><a href="{{ path('admin_vulnerabilite_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td>{{ entity.titre }}</td>
+                        <td>{{ entity.datePub|date('d/m/Y') }}</td>
+                        <td>
+                        
+                            <a href="{{ path('admin_vulnerabilite_show', { 'id': entity.id }) }}"class="btn btn-sm btn-success">
+                        <i class="fa fa-1x fa-eye"></i> voir</a>
+                            
+                                <a href="{{ path('admin_vulnerabilite_edit', { 'id': entity.id }) }}"class="btn btn-sm btn-info">
+                        <i class="fa fa-1x fa-edit"></i> éditer</a>
+                           
+                        </td>
+                    </tr>
+                {% endfor %}
+        </tbody>
+    </table>
     </div>
     {% endblock %}

@@ -3,13 +3,36 @@
 {% block body -%}
     <h1>Vulnerabilite creation</h1>
 
-    {{ form(form) }}
+    <div class="col-lg-5">
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_vulnerabilite') }}" class="btn btn-sm btn-info">
-            <i class="fa fa-2x fa-menu-left"></i>Retourner &aacute; la liste</a>
-        </a>
-    </li>
-</ul>
+    	{{ form_start(form, {'attr': {'id': 'form_vulnerabilite_new'}}) }}
+
+	    	{{ form_widget(form.submit, {"attr": {"class":"display-none"}}) }}
+
+	    	{# generation automatique des champs pas encore ecrits qui est le chapmp CSRF(generee automatiquement par symfony) et tous les champs cachees de type hidden #}
+	    	{{ form_rest(form) }}
+
+	    {{ form_end(form) }}
+    
+		<div class="form-group">
+			<ul  class="actions">
+				<li>
+					<button type="submit" 
+							form="form_vulnerabilite_new" 
+							value="Submit" 
+							class="btn btn-primary">
+						<i class="fa fa-chevron-plus"></i>
+						Ajouter
+					</button>
+				</li>
+				<li>
+			        <a href="{{ path('admin_vulnerabilite') }}" 
+			        	class="btn 	 btn-warning">
+			        	<i class="fa fa-chevron-left"></i>
+			            Retour sur la liste
+			        </a>    					
+				</li>
+			</ul>
+		</div>
+	</div>
 {% endblock %}

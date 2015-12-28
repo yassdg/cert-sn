@@ -176,6 +176,11 @@ class AnnonceController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            
+            $uploader   = $this->get('uploader_image');
+            $files      = $request->files->get('cert_incidentbundle_annonce');
+            $imagePath  = $uploader->upload($files['fichier']);
+            $entity->setImage($imagePath);
             $em->flush();
 
             return $this->redirect($this->generateUrl('admin_annonce_edit', array('id' => $id)));

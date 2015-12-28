@@ -16,12 +16,42 @@ class VulnerabiliteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titre','text')
-            ->add('description','textarea')
-            ->add('impact','textarea')
-            ->add('solution','textarea')
-            ->add('reference','textarea')
-            ->add('source','textarea')
+        ->add('titre',null, array(
+                    'attr'=> array(
+                        'class'=> 'form-control'
+                    )
+                )
+            )
+            ->add('description',null, array(
+                    'attr'=> array(
+                        'class'=> 'form-control'
+                    )
+                )
+            )
+            ->add('impact',null, array(
+                    'attr'=> array(
+                        'class'=> 'form-control'
+                    )
+                )
+            )
+            ->add('solution',null, array(
+                    'attr'=> array(
+                        'class'=> 'form-control'
+                    )
+                )
+            )
+            ->add('reference',null, array(
+                    'attr'=> array(
+                        'class'=> 'form-control'
+                    )
+                )
+            )
+            ->add('source',null, array(
+                    'attr'=> array(
+                        'class'=> 'form-control'
+                    )
+                )
+            )
             ->add('datepub')
             ->add('dateModification')
             ->add('fichier')

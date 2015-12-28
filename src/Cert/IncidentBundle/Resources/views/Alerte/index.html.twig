@@ -2,9 +2,16 @@
 
 {% block body -%}
     <center><h1>Liste des alertes</h1></center>
-    <div class="well">
+    <hr>
+    <ul>
+        <a href="{{ path('admin_alerte_new') }}" class="btn btn-sm btn-success">
+            <i class="fa fa-1x fa-plus"></i> Ajouter nouvelle alerte
+        </a>
+    </ul>
+    
+    <div class="col-lg-10">
         <table class="table table-bordered table-hover">
-            <thead>
+            <thead class="bg-primary">
                 <tr>
                     <th>Id</th>
                     <th>Titre</th>
@@ -17,19 +24,13 @@
                     <td><a href="{{ path('admin_alerte_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                     <td>{{ entity.titre }}</td>
                     <td>
-                        <a href="{{ path('admin_alerte_show', { 'id': entity.id }) }}" class="btn btn-sm btn-info"/><i class="fa fa-2x fa-eye"></i>voir</a>
+                        <a href="{{ path('admin_alerte_show', { 'id': entity.id }) }}" class="btn btn-sm btn-info"/><i class="fa fa-1x fa-eye"></i> voir</a>
                             
-                        <a href="{{ path('admin_alerte_edit', { 'id': entity.id }) }}" class="btn btn-sm btn-success"/><i class="fa fa-2x fa-edit"></i>&eacute;diter</a>    
+                        <a href="{{ path('admin_alerte_edit', { 'id': entity.id }) }}" class="btn btn-sm btn-success"/><i class="fa fa-1x fa-edit"></i> éditer</a>    
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-
-        <ul>
-            <a href="{{ path('admin_alerte_new') }}" class="btn btn-sm btn-default">
-                <i class="fa fa-2x fa-edit"></i>Cr&eacute;er nouvelle alerte
-            </a>
-        </ul>
     </div>
     {% endblock %}

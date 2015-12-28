@@ -2,9 +2,15 @@
 
 {% block body -%}
     <center><h1>Liste des incidents</h1></center>
-    <div class="table-responsive">
+    <hr>
+    <ul>
+        <a href="{{ path('expert_incident_new') }}" class="btn btn-sm btn-success">
+            <i class="fa fa-1x fa-plus "></i> Ajouter un incident
+        </a>
+    </ul>
+    <div class="col-lg-7">
         <table class="table table-bordered table-hover">
-            <thead>
+            <thead class="bg-primary">
                 <tr>
                     <th>Id</th>
                     <th>Titre</th>
@@ -15,11 +21,11 @@
             <tbody>
             {% for entity in entities %}
                 <tr>
-                    <td><a href="{{ path('expert_incident_show', { 'id': entity.id }) }}">{{ entity.id     }}</a>
+                    <td><a href="{{ path('expert_incident_show', { 'id': entity.id }) }}">{{ entity.id }}</a>
                     </td>
                     <td>{{ entity.type }}</td>
                     {% if entity.traitee == true %}    
-                        <td>{{ entity.user.username }}</td>
+                        <td>{{ entity.user.username|upper }}</td>
                         <td>
                                 Incident traité <a href="{{ path('expert_incident_show', { 'id': entity.id }) }}" class="btn btn-sm btn-info"/><i class="fa fa-1x fa-eye"></i> voir</a>      
                         </td>
@@ -35,11 +41,5 @@
             {% endfor %}
             </tbody>
         </table>
-
-        <ul>
-            <a href="{{ path('expert_incident_new') }}" class="btn btn-sm btn-default">
-                <i class="fa fa-2x fa-edit btn btn-primary btn-flat "></i>Cr&eacute;er nouvel incident
-            </a>
-        </ul>
     </div>
     {% endblock %}

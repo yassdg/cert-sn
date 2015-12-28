@@ -33,6 +33,7 @@ class AlerteController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $params = $request->request->get('cert_incidentbundle_alerte');
             $preferencArray = explode(';', $params['reference']);
             $entity->setReference($preferencArray);
@@ -206,7 +207,7 @@ class AlerteController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_alerte_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => ' Supprimer'))
             ->getForm()
         ;
     }

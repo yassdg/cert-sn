@@ -180,10 +180,12 @@ class VulnerabiliteController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+
             $uploader   = $this->get('uploader_image');
             $files      = $request->files->get('cert_incidentbundle_vulnerabilite');
             $imagePath  = $uploader->upload($files['fichier']);
             $entity->setImage($imagePath);
+            
             $em->flush();
 
             return $this->redirect($this->generateUrl('admin_vulnerabilite_edit', array('id' => $id)));
@@ -231,7 +233,7 @@ class VulnerabiliteController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_vulnerabilite_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => ' Supprimer'))
             ->getForm()
         ;
     }
