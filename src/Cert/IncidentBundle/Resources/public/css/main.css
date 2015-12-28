@@ -257,3 +257,13 @@ li.info-item {
     box-shadow: 0px 0px 5px #c7C7C7;
     border: 1px solid #f1f1f1;
 }
+
+#image_vulnerabilite .cadre_image{
+    height:        250px;
+    overflow:      hidden;
+        margin-bottom: 20px;
+}
+#image_vulnerabilite .cadre_image img{
+    width: 100%;
+    height: auto;
+}
