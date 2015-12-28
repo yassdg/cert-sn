@@ -4,7 +4,7 @@
 
     <h1 >Profile Compte</h1>
     <hr>
-    <div class="table-responsive">
+    <div>
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
@@ -35,10 +35,29 @@
                 </tr>
             </tbody>
         </table>
-
-        <a href="{{ path('admin_users') }}" class="btn btn-sm btn-info">Retour sur la liste</a>
-        <a href="{{ path('admin_users_edit', { 'id': entity.id }) }}" class="btn btn-sm btn-success"><i  class="fa fa-2x fa-edit"></i>Editer compte</a>
-        <i class="icon-trash"></i>{{ form(delete_form) }}
         
+        <div class="form-group">
+            <ul  class="actions">
+                <li>
+                    <a href="{{ path('admin_users') }}" 
+                        class="btn   btn-warning">
+                        <i class="fa fa-chevron-left"></i>
+                        Retour sur la liste
+                    </a>                        
+                </li>
+                <li>
+                    <a href="{{ path('admin_users_edit', { 'id': entity.id }) }}" 
+                        class="btn btn-primary">
+                        <i class="fa fa-chevron-edit"></i>
+                            Editer Compte
+                    </a>
+                </li>
+                <li>
+                    {{ form_start(delete_form) }}
+                        {{ form_widget(delete_form.submit, {'attr': {'class': "btn btn-danger icon-trash"} }) }}
+                    {{ form_end(delete_form) }}
+                </li>
+            </ul>
+        </div>
     </div>
 {% endblock %}

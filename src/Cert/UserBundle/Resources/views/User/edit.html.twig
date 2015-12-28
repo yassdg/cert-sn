@@ -4,15 +4,66 @@
     <h1>Edition Compte Utilisateur</h1>
 
     <hr>
+    <div class="col-md-6">
+    	{{ form_start(edit_form,  {'attr': {'id': 'form_user_edit'}} ) }}
+    		<div> 
+				{{ form_label(edit_form.username) }}
+				{{ form_errors(edit_form.username) }}
+				{{ form_widget(edit_form.username) }}
+    		</div>
+    		<div> 
+				{{ form_label(edit_form.email) }}
+				{{ form_errors(edit_form.email) }}
+				{{ form_widget(edit_form.email) }}
+    		</div>
+    		<div> 
+				{{ form_label(edit_form.password) }}
+				{{ form_errors(edit_form.password) }}
+				{{ form_widget(edit_form.password) }}
+    		</div>
+    		<div> 
+				{{ form_label(edit_form.nom) }}
+				{{ form_errors(edit_form.nom) }}
+				{{ form_widget(edit_form.nom) }}
+    		</div>
+    		<div> 
+				{{ form_label(edit_form.prenom) }}
+				{{ form_errors(edit_form.prenom) }}
+				{{ form_widget(edit_form.prenom) }}
+    		</div>
+    		<div> 
+				{{ form_label(edit_form.telephone) }}
+				{{ form_errors(edit_form.telephone) }}
+				{{ form_widget(edit_form.telephone) }}
+    		</div>
+    		
+			{{ form_widget(edit_form.submit, {"attr": {"class":"display-none"}}) }}
 
-    {{ form(edit_form) }}
+    	{{ form_end(edit_form) }}
 
-    <ul class="record_actions">
-	    <li>
-	        <a href="{{ path('admin_users') }}" class="btn">
-	            Retour &aacute; la liste des utilisateurs
-	        </a>
-	    </li>
-	    <li>{{ form(delete_form) }}</li>
-	</ul>
+		<div class="form-group">
+			<ul  class="actions">
+				<li>
+			        <a href="{{ path('admin_users') }}" 
+			        	class="btn 	 btn-warning">
+			        	<i class="fa fa-chevron-left"></i>
+			            Retour sur la liste
+			        </a>    					
+				</li>
+				<li>
+					<button type="submit" 
+							form="form_user_edit" 
+							value="Submit" 
+							class="btn btn-primary">
+							Editer compte
+					</button>
+				</li>
+				<li>
+    				{{ form_start(delete_form) }}
+    					{{ form_widget(delete_form.submit, {'attr': {'class': "btn btn-danger"} }) }}
+    				{{ form_end(delete_form) }}
+				</li>
+			</ul>
+		</div>
+    </div>
 {% endblock %}

@@ -40,7 +40,7 @@ class VulnerabiliteType extends AbstractType
                     )
                 )
             )
-            ->add('reference',null, array(
+            ->add('reference',"textarea", array(
                     'attr'=> array(
                         'class'=> 'form-control'
                     )

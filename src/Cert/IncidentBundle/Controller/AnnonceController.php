@@ -47,6 +47,9 @@ class AnnonceController extends Controller
             $imagePath  = $uploader->upload($files['fichier']);
             $entity->setImage($imagePath);
 
+            $user = $this->get('security.context')->getToken()->getUser();
+            $entity->setUser($user);
+
             $em->persist($entity);
             $em->flush();
 
@@ -181,6 +184,10 @@ class AnnonceController extends Controller
             $files      = $request->files->get('cert_incidentbundle_annonce');
             $imagePath  = $uploader->upload($files['fichier']);
             $entity->setImage($imagePath);
+
+            $user = $this->get('security.context')->getToken()->getUser();
+            $entity->setUser($user);
+            
             $em->flush();
 
             return $this->redirect($this->generateUrl('admin_annonce_edit', array('id' => $id)));

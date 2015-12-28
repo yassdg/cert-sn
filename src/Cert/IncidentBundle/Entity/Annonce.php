@@ -44,11 +44,13 @@ class Annonce
      /**
      * @var \Cert\UserBundle\Entity\User
      */
+
     private $user;
      /**
      * @Assert\File(maxSize="6000000")
      */
     private $fichier;
+
 
     public function __construct() {
         $this->dateAnnonce = new \DateTime();

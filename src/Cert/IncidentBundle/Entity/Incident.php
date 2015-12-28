@@ -49,9 +49,10 @@ class Incident
      * @ORM\Column(name="dateDeclaration", type="date")
      */
     private $dateDeclaration;
-     /**
+
+    /**
      * @var boolean
-     */
+    */
     private $traitee;
 
     //definition du controleur

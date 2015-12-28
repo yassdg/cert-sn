@@ -7,15 +7,7 @@
 {% block body %}
     
     {# on affiche les messages flash que definissent les controleurs du bundle #}
-    <div class="well">
-        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-
-            <b>Connecté en tant que {{ app.user.username }} </b>
-                    -
-            <a href="{{ path('fos_user_security_logout') }}" class="btn">Déconnexion</a>
-        {% else %}
-            <a href="{{ path('fos_user_security_login') }}" class="btn">Connexion</a>
-        {% endif %}
+    <div>
 
         {% for key, message in app.session.flashbag.all() %}
             <div class="alert alert-{{ key }}">

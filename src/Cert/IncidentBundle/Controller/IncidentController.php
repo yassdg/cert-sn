@@ -40,6 +40,7 @@ class IncidentController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
             $em->persist($entity);
             $em->flush();
             return $this->redirect($this->generateUrl('expert_incident_show', array('id' => $entity->getId())));
@@ -152,7 +153,7 @@ class IncidentController extends Controller
             $user = $this->get('security.context')->getToken()->getUser();
             $entity->setUser($user);
             $entity->setTraitee(true);
-            
+
             $em->flush();
             return $this->redirect($this->generateUrl('expert_incident_edit', array('id' => $id)));
         }
