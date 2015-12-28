@@ -8,7 +8,7 @@
     {% endif %}
     <div class="col-lg-4">
     </div>
-    <div class="alert alert-info col-lg-4">
+    <div class="alert alert-info col-lg-6" id="authentification">
         <form action="{{ path("fos_user_security_check") }}" method="post">
 
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
