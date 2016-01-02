@@ -5,7 +5,6 @@
 {% endblock %}
 
 {% block body -%}
-   <hr>
     <h1>Alerte de securite sur: {{ entity.titre }}</h1>
     <div class="well">
         <h2>Systeme Affecte</h2><p>{{ entity.systemeAffecte }}</p>
@@ -18,7 +17,7 @@
 
         <h3>Solution</h3><p>{{ entity.solution|raw }}</p>
         
-        <h3>References</h3>
+        <h3>Références</h3>
             <ul>
                 {% for ref in entity.reference %}
                      <li><a target="_blank" href="{{ ref }}">{{ ref }}</a></li>
@@ -28,7 +27,11 @@
         <p>{{ entity.revisions }}</p>
     </div>
     <a href="{{ path('cert_incident_accueil') }}" class="btn btn-sm btn-info">
-    <i class="fa fa-2x fa-home"></i>Retourner à la page d'accueil</a>
+        <i class="fa fa-2x fa-home"></i>
+        Retourner à la page d'accueil
+    </a>
     <a href="#" class="btn btn-sm btn-danger">
-    <i class="fa fa-2x fa-download"></i>Télécharger</a>
+        <i class="fa fa-2x fa-download"></i>
+        Télécharger
+    </a>
 {% endblock %}

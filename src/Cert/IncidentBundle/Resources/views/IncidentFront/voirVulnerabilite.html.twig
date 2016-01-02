@@ -25,16 +25,16 @@
         <p>{{ entity.impact }}</p>
     <h3>Solution</h3>
         <p>{{ entity.solution }}</p>
-    <h3>References</h3>
+    <h3>Références</h3>
         <ul>
             {% for ref in entity.reference %}
                 <li><a target="_blank" href="{{ ref }}">{{ ref }}</a></li>
             {% endfor %}
         </ul>
     <h3>Date de Publication</h3>
-        <p>{{ entity.datePub|date('d/m/Y') }}</p>
-    <h3>Date deernier Modification</h3>
-        <p>{{ entity.dateModification|date('d/m/Y') }}</p>
+        <p>{{ entity.datePub|date('d/m/Y H:m:s') }}</p>
+    <h3>Date dernière Modification</h3>
+        <p>{{ entity.dateModification|date('d/m/Y H:m:s') }}</p>
     </div>
     <a href="{{ path('cert_incident_accueil') }}" class="btn btn-sm btn-info">
     <i class="fa fa-2x fa-home"></i> Accueil</a>

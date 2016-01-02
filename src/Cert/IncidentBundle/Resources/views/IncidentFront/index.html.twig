@@ -64,7 +64,7 @@
         </div>      
         <div class="col-lg-9 col-md-9" id="vulnerabilitePlace">
             {# affichage des vulnerabilite se trouvant dans la base de donnees #}
-            <h2 id="vulnerabilite_title"> 
+            <h2 class="vulnerabilite_title"> 
                 <i class="glyphicon glyphicon-alert"></i>
                 Vulnérabilités Rencentes
             </h2>
@@ -85,31 +85,35 @@
                 {% endif %}
             {% endfor %}
             <div class="col-md-12">
-                <a class="btn pull-left btn-sm  btn-primary" 
+                <a class="detail-btn pull-left " 
                     href="{{ path('cert_incident_ListingVulnerabilite') }}">
-                    voir plus &raquo;
+                     Voir plus <i class="fa fa-plus-circle"></i>
                 </a>
             </div>
         </div>
-        <div class="col-lg-3 col-md-3" id="alerte">
+        <div class="col-lg-3 col-md-3 sidebar" id="alerte" >
             <h2>Alertes de sécurité</h2>
             <ul>
                 {% for alerte in liste_alertes %}
                     {% if loop.index <9 %}
                     <li class=" info-item glyphicon glyphicon-chevron-right">
-                        {{ alerte.titre }}
-                        <a class="detail-btn" href="{{ path('cert_incident_voirAlerte', { 'id': alerte.id }) }}">Detail</a>
+                        <a  
+                            href="{{ path('cert_incident_voirAlerte', { 'id': alerte.id }) }}" class="">{{ alerte.titre }}
+                        </a>
                     </li><br/>
                     {% endif %}
                   {% else %}
                     <li>Pas d'alerte pour le moment !!) </li>
                 {% endfor %}
             </ul>
+            <a class="detail-btn" href="#">
+                 Voir plus <i class="fa fa-plus-circle"></i>
+            </a>
         </div>
 
         <div class="col-lg-9 col-md-9" id="vulnerabilitePlace">
         
-            <h2 id="vulnerabilite_title"> 
+            <h2 class="vulnerabilite_title"> 
                 <i class="glyphicon glyphicon-alert"></i>
                 Annonces Récentes
             </h2>
@@ -130,27 +134,29 @@
                 {% endif %}
             {% endfor %}
             <div class="col-md-12">
-                <a class="btn pull-left btn-sm  btn-primary" 
+                <a class="detail-btn pull-left " 
                     href="{{ path('cert_incident_ListingVulnerabilite') }}">
-                    voir plus &raquo;
+                     Voir plus <i class="fa fa-plus-circle"></i>
                 </a>
             </div>
         </div>
 
-        <div class="col-lg-3 col-md-3" id="alerte">
+        <div class="col-lg-3 col-md-3 sidebar" id="docs">
             <h2>Docs Techniques</h2>
             <ul>
                 {% for alerte in liste_alertes %}
                     {% if loop.index <9 %}
                     <li class=" info-item glyphicon glyphicon-chevron-right">
                         {{ alerte.titre }}
-                        <a class="detail-btn" href="{{ path('cert_incident_voirAlerte', { 'id': alerte.id }) }}">Detail</a>
-                    </li><br/>
+                    </li>
                     {% endif %}
                   {% else %}
                     <li>Pas d'alerte pour le moment !!) </li>
                 {% endfor %}
             </ul>
+            <a class="detail-btn" href="#">
+                 Voir plus <i class="fa fa-plus-circle"></i>
+            </a>
         </div>
     </div>
 <!--/contenu principal -->
