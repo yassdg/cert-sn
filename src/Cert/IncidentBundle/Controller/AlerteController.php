@@ -31,6 +31,7 @@ class AlerteController extends Controller
         $entity = new Alerte();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
+
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
@@ -40,6 +41,8 @@ class AlerteController extends Controller
             $user = $this->get('security.context')->getToken()->getUser();
             $entity->setUser($user);
 
+            //GENERATION DU PDF
+            
             $em->persist($entity);
             $em->flush();
 

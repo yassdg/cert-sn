@@ -81,3 +81,7 @@ cert_incident_voirAnnonce:
     defaults:    { _controller: CertIncidentBundle:IncidentFront:annonce }
 
 
+
+genererpdf:
+    path:     /genererpdf
+    defaults: { _controller: CertIncidentBundle:GenerePDF:genererpdf }

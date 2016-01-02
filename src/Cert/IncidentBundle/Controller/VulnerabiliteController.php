@@ -29,6 +29,10 @@ class VulnerabiliteController extends Controller
             'entities' => $entities,
         ));
     }
+    public function pdfAction()
+    {
+        $pdf = $this->get('generation_pdf');
+    }
     /**
      * Creates a new Vulnerabilite entity.
      *
@@ -41,13 +45,16 @@ class VulnerabiliteController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $params = $request->request->get('cert_incidentbundle_vulnerabilite');
             $preferencArray = explode(';', $params['reference']);
             $entity->setReference($preferencArray);
+
             $uploader   = $this->get('uploader_image');
             $files      = $request->files->get('cert_incidentbundle_vulnerabilite');
             $imagePath  = $uploader->upload($files['fichier']);
             $entity->setImage($imagePath);
+
             $em->persist($entity);
             $em->flush();
 
